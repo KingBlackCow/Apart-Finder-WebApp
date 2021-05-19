@@ -36,6 +36,16 @@
 
         <form method="POST" action="https://formspree.io/eldin@zaimovic.com">
           <v-text-field
+            id="id"
+            color="green"
+            background-color="transparent"
+            v-model="id"
+            :error-messages="IdErrors"
+            label="Id"
+            required
+            @blur="$v.id.$touch()"
+          ></v-text-field>
+          <v-text-field
             name="name"
             color="green"
             background-color="transparent"
@@ -56,22 +66,23 @@
             required
             @blur="$v.email.$touch()"
           ></v-text-field>
-          <v-textarea
+          <v-text-field
+            mbti="mbti"
             color="green"
             background-color="transparent"
-            :counter="200"
+            :counter="4"
             :error-messages="bodyErrors"
-            v-model="body"
-            label="Textarea"
-            name="body"
-            @blur="$v.body.$touch()"
-          ></v-textarea>
+            v-model="mbti"
+            label="Mbti"
+            name="mbti"
+            @blur="$v.mbti.$touch()"
+          ></v-text-field>
           <v-btn
             @click="submit"
             type="submit"
             color="green"
             class="white--text"
-            :disabled=" (body.length<=20)"
+            :disabled=" (mbti.length<4)"
           >SEND MESSAGE</v-btn>
           <v-btn @click="clear">clear</v-btn>
         </form>
@@ -119,13 +130,14 @@ export default {
   validations: {
     name: { required, maxLength: maxLength(20) },
     email: { required, email },
-    body: { required, minLength: minLength(20) }
+    mbti: { required, minLength: minLength(4) }
   },
   data() {
     return {
+      id:"",
       name: "",
       email: "",
-      body: ""
+      mbti: ""
     };
   },
   methods: {
@@ -134,9 +146,10 @@ export default {
     },
     clear() {
       this.$v.$reset();
+      this.id="";
       this.name = "";
       this.email = "";
-      this.body = "";
+      this.mbti = "";
     }
   },
   computed: {
@@ -157,10 +170,10 @@ export default {
     },
     bodyErrors() {
       const errors = [];
-      if (!this.$v.body.$dirty) return errors;
-      !this.$v.body.minLength &&
-        errors.push("Text must be at least 20 characters long");
-      !this.$v.body.required && errors.push("Text is required");
+      if (!this.$v.mbti.$dirty) return errors;
+      !this.$v.mbti.minLength &&
+        errors.push("mbti 4글자 입력");
+      !this.$v.mbti.required && errors.push("MBTI를 입력해주세요.");
       return errors;
     }
   }

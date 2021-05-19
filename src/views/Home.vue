@@ -23,7 +23,7 @@
 
     <br>
 
-    <vue-typer class="headline" :repeat="0" text="Eldin Zaimovic"></vue-typer>
+    <vue-typer class="headline" :repeat="0" text="MBTI별 팀 매칭 서비스"></vue-typer>
     <vue-typer
       :text="text1"
       :repeat="Infinity"
@@ -43,19 +43,15 @@
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0">
-              <span>About</span>
-              <span class="green--text">Me</span>
+              <span>What about this </span>
+              <span class="green--text">service?</span>
             </h3>
             <div>
               <p>
-                Hello! I’m Eldin Zaimovic. I'm a front-end developer who
-                is passionate about
-                <span
-                  class="green--text font-weight-bold"
-                >VUE</span>, building great user experiences,
-                fighting for simplicity over complexity and constantly learning.
-                When I'm not coding or making videos, you'll find me traveling across Europe.
+                보다 완벽한 팀선택을 위한 서비스!
               </p>
+            
+              <!-- <span class="green--text font-weight-bold">VUE</span> -->
             </div>
           </div>
         </v-card-title>
@@ -75,7 +71,7 @@
           </v-btn>
         </v-card-actions>
 
-        <v-card-actions class="hidden-md-and-up justify-center">
+        <!-- <v-card-actions class="hidden-md-and-up justify-center">
           <v-btn
             v-for="icon in icons"
             :key="icon.icon"
@@ -89,10 +85,31 @@
           >
             <v-icon dark>{{icon.icon}}</v-icon>
           </v-btn>
-        </v-card-actions>
+        </v-card-actions> -->
       </v-card>
     </v-flex>
+
+    <v-layout row justify-center align-center wrap class="mt-6 pt-2">
+      <v-flex v-for="portfolio in portfolios" :key="portfolio.src" xs12 sm12 md4 lg4 xl4>
+        <v-card
+          :to="'/portfolio/'+(portfolio.title).toLowerCase()"
+          hover
+          flat
+          color="transparent"
+          height="230"
+          :href="portfolio.href"
+        >
+          <v-card-title></v-card-title>
+          <v-img :src="portfolio.src" aspect-ratio="2.75" width="150" height="150" contain></v-img>
+          <v-card-title primary-title class="justify-center">
+            <v-flex text-xs-center subheading font-weight-bold>{{portfolio.title}}</v-flex>
+          </v-card-title>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    
   </v-layout>
+    
 </template>
 
 <script>
@@ -145,14 +162,31 @@ export default {
         },
         { href: "https://www.instagram.com/matricar", icon: "fab fa-instagram" }
       ],
-      text1: ["Front-End Developer", "Web Developer", "Web Designer"],
-      leftImage: "https://i.imgur.com/bU50uS9.jpg",
-      rightImage: "https://i.imgur.com/z3ZoEEw.jpg",
-      leftImage2: "https://i.imgur.com/SXBitjh.jpg",
-      rightImage2: "https://i.imgur.com/Dcz2PGx.jpg",
+      text1: ["당신의 팀을 기대합니다.", "누구보다 완벽한 팀", "가장 맞는 팀"],
+    
+      leftImage: "https://i.postimg.cc/XXMnBdDD/study.jpg",
+      rightImage: "https://i.postimg.cc/Px3WHrFq/mbti.jpg",
+      leftImage2: "https://i.postimg.cc/XXMnBdDD/study.jpg",
+      rightImage2: "https://i.postimg.cc/MHnGQWZX/2.jpg",
       sliderLine: 0,
       hSize: 0,
-      sliderPosition: 0.5
+      sliderPosition: 0.5,
+      portfolios: [
+        {
+          src: "https://i.imgur.com/GvTt5GG.png",
+          title: "Web"
+        },
+
+        {
+          src: "https://i.imgur.com/wXLtLKy.png",
+          title: "Video"
+        },
+        {
+          src: "https://i.imgur.com/g74mGuU.png",
+          title: "Graphic"
+        }
+      ]
+    
     };
   }
 };
