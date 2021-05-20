@@ -35,13 +35,16 @@ export default new Vuex.Store({
     mutations: {
         GET_APT_LIST(state, apts) {
         // console.log(state, apts);
+            console.log(apts);
             state.apts = apts;
         },
         SELECT_APT(state, apt) {
+            console.log(apts);
             state.apt = apt;
         },
         SET_CITY(state, data) {
             state.cityList.length = 0;
+            console.log(data);
             data.forEach(element => {
                 state.cityList.push({ value: element, text: element });
             });
