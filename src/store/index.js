@@ -13,6 +13,7 @@ export default new Vuex.Store({
         cityList: [],
         guList: [],
         dongList: [],
+        address: Object,
     },
     getters: {
         cityList(state) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
         dongList(state) {
             return state.dongList;
         },
+        address(state) {
+            return state.address;
+        }
     },
     mutations: {
         GET_APT_LIST(state, apts) {
@@ -51,20 +55,24 @@ export default new Vuex.Store({
                 state.dongList.push({ value: element, text: element });
             });
         },
+        SET_ADD(state, data) {
+            state.address = data.data;
+        }
     },
     actions: {
-        getAptList({ commit }, dongCode) {
+        getAptList({ commit, state}) {
+            console.log(state.address.dongcode);
             // vue cli enviroment variables 검색
             //.env.local file 생성.
             // 반드시 VUE_APP으로 시작해야 한다.
             //const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
-            const SERVICE_KEY ='9Xo0vlglWcOBGUDxH8PPbuKnlBwbWU6aO7%2Bk3FV4baF9GXok1yxIEF%2BIwr2%2B%2F%2F4oVLT8bekKU%2Bk9ztkJO0wsBw%3D%3D';
+            const SERVICE_KEY = '9Xo0vlglWcOBGUDxH8PPbuKnlBwbWU6aO7%2Bk3FV4baF9GXok1yxIEF%2BIwr2%2B%2F%2F4oVLT8bekKU%2Bk9ztkJO0wsBw%3D%3D';
 
             const SERVICE_URL =
                 'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev';
 
             const params = {
-                LAWD_CD: dongCode,
+                LAWD_CD: state.address.dongcode,
                 DEAL_YMD: '202010',
                 serviceKey: decodeURIComponent(SERVICE_KEY),
             };
@@ -119,6 +127,20 @@ export default new Vuex.Store({
                     alert("에러발생!");
                 });
         },
+        getAdd({ commit, dispatch }, add) {
+            console.log(this);
+            http
+                .get("/apart/"+add[0]+"/"+add[1]+"/"+add[2])
+                .then((data) => {
+                    console.log(data);
+                    commit("SET_ADD", data);
+
+                    dispatch('getAptList');
+                })
+                .catch(() => {
+                    alert("에러발생!");
+                });
+        }
     },
     modules: {},
     plugins: [createPersistedState()],

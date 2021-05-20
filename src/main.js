@@ -6,6 +6,7 @@ import StoryblokVue from 'storyblok-vue'
 import VueAnalytics from 'vue-analytics'
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import * as VueGoogleMaps from 'vue2-google-maps';
 
 // Install BootstrapVue
 Vue.use(BootstrapVue);
@@ -32,5 +33,11 @@ Vue.use(VueAnalytics, {
   debug: {
     enabled: !isProd,
     sendHitTask: isProd
+  }
+})
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAAHuS3QzpixOgCb9AOfb9yE7ITxgVmigs',
+    libraries: 'places',
   }
 })
