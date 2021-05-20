@@ -14,6 +14,10 @@
         <apt-detail />
       </b-col>
     </b-row>
+    <b-row>
+      <gmap>
+      </gmap>
+    </b-row>
   </b-container>
 </template>
 
@@ -21,6 +25,7 @@
 import AptSearchBar from '@/components/apt/AptSearchBar.vue';
 import AptList from '@/components/apt/AptList.vue';
 import AptDetail from '@/components/apt/AptDetail.vue';
+import Gmap from '@/components/apt/Gmap.vue';
 
 export default {
   name: 'Apt',
@@ -28,6 +33,7 @@ export default {
     AptSearchBar,
     AptList,
     AptDetail,
+    Gmap,
   },
   data() {
     return {};
