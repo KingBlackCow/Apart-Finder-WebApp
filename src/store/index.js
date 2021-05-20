@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import axios from 'axios';
 import createPersistedState from 'vuex-persistedstate';
 import http from "@/util/http-common";
+import router from '../router';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,8 @@ export default new Vuex.Store({
         guList: [],
         dongList: [],
         address: Object,
+        host: 'localhost:8081/happyhouse',
+        role:''
     },
     getters: {
         cityList(state) {
@@ -57,6 +60,31 @@ export default new Vuex.Store({
         },
         SET_ADD(state, data) {
             state.address = data.data;
+        },
+        loginToken: function (state, payload) {
+            state.token = payload;
+        },
+        logout: function (state) {
+            if (state.token) {
+                state.token = '';
+                alert('로그아웃되었습니다.');
+            }
+        },
+        loginCheck: function (state) {
+            axios.get(`${state.host}/user/login/check`, {
+                headers: {
+                    "x-access-token": state.token
+                }
+                })
+                .then(
+                    res => {
+                        state.role = res.data.token.role;
+                    },
+                    error => {
+                        console.log('로그인 정보가 없음');
+                        router.push("/login");
+                    }
+                );
         }
     },
     actions: {

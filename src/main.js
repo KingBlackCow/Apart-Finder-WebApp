@@ -7,6 +7,7 @@ import VueAnalytics from 'vue-analytics'
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import axios from 'axios'
 
 // Install BootstrapVue
 Vue.use(BootstrapVue);
@@ -19,6 +20,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.config.productionTip = false
 const isProd = process.env.NODE_ENV === "production"
+Vue.prototype.$Axios = axios;
+Vue.config.productionTip = false;
 
 new Vue({
   router,
