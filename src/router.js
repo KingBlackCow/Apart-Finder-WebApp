@@ -75,8 +75,8 @@ export default new Router({
     //   component: Apt,
     // },
     {
-      path: "/resume",
-      name: "resume",
+      path: "/Apt",
+      name: "Apt",
       component: () =>
         import( /* webpackChunkName: "about" */ "./views/Apt.vue")
     },
