@@ -54,4 +54,9 @@
 	    <beans:property name="order" value="0" />
 	</beans:bean>  -->
 	
+	<!-- swagger -->
+<!--     <bean id="swagger2Config" class="com.commons.config.SwaggerConfig"></bean> -->
+    <resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></resources>
+    <resources location="classpath:/META-INF/resources/webjars/"  mapping="/webjars/**"></resources>
+	
 </beans:beans>

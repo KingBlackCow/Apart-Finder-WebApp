@@ -228,6 +228,7 @@
 			}
 			
 			//시도 목록
+			console.log('${root}/apart/city');
 			$.ajax({
 				url:'${root}/apart/city', 
 				type:'GET',
