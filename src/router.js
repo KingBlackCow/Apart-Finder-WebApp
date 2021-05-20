@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Meta from 'vue-meta'
-
+import Apt from '@/views/Apt.vue';
 Vue.use(Router);
 Vue.use(Meta)
 
@@ -19,12 +19,6 @@ export default new Router({
       name: "contact",
       component: () =>
         import( /* webpackChunkName: "about" */ "./views/Contact.vue")
-    },
-    {
-      path: "/resume",
-      name: "resume",
-      component: () =>
-        import( /* webpackChunkName: "about" */ "./views/Resume.vue")
     },
     {
       path: "/blog",
@@ -74,6 +68,17 @@ export default new Router({
       name: "Error",
       component: () =>
         import( /* webpackChunkName: "about" */ "./views/Error.vue")
-    }
+    },
+    // {
+    //   path: '/vuetest/apt',
+    //   name: 'Apt',
+    //   component: Apt,
+    // },
+    {
+      path: "/resume",
+      name: "resume",
+      component: () =>
+        import( /* webpackChunkName: "about" */ "./views/Apt.vue")
+    },
   ]
 });
