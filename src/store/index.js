@@ -4,6 +4,8 @@ import axios from 'axios';
 import createPersistedState from 'vuex-persistedstate';
 import http from "@/util/http-common";
 import router from '../router';
+import jwt_decode from "jwt-decode";
+import { findById } from "@/api/user.js";
 
 Vue.use(Vuex);
 
@@ -15,8 +17,8 @@ export default new Vuex.Store({
         guList: [],
         dongList: [],
         address: Object,
-        host: 'localhost:8081/happyhouse',
-        role:''
+        isLogin: false, // 로그인 여부
+        userInfo: null
     },
     getters: {
         cityList(state) {
@@ -64,30 +66,16 @@ export default new Vuex.Store({
         SET_ADD(state, data) {
             state.address = data.data;
         },
-        loginToken: function (state, payload) {
-            state.token = payload;
+        setIsLogined(state, isLogin) {
+            state.isLogin = isLogin;
         },
-        logout: function (state) {
-            if (state.token) {
-                state.token = '';
-                alert('로그아웃되었습니다.');
-            }
+        setUserInfo(state, userInfo) {
+            state.isLogin = true;
+            state.userInfo = userInfo;
         },
-        loginCheck: function (state) {
-            axios.get(`${state.host}/user/login/check`, {
-                headers: {
-                    "x-access-token": state.token
-                }
-                })
-                .then(
-                    res => {
-                        state.role = res.data.token.role;
-                    },
-                    error => {
-                        console.log('로그인 정보가 없음');
-                        router.push("/login");
-                    }
-                );
+        logout(state) {
+            state.isLogin = false;
+            state.userInfo = null;
         }
     },
     actions: {
@@ -171,6 +159,30 @@ export default new Vuex.Store({
                 .catch(() => {
                     alert("에러발생!");
                 });
+        },
+        async GET_MEMBER_INFO({ commit }, token) {
+            let decode = jwt_decode(token);
+
+            await findById(
+                decode.userid,
+                (response) => {
+                if (response.data.message === "success") {
+                    commit("setUserInfo", response.data.userInfo);
+                  // router.push("/");
+                  // router.go(router.currentRoute);
+                } else {
+                    console.log("유저 정보 없음!!");
+                }
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        },
+        LOGOUT({ commit }) {
+            commit("logout");
+            localStorage.removeItem("access-token");
+            // axios.defaults.headers.common["auth-token"] = undefined;
         }
     },
     modules: {},

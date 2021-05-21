@@ -50,14 +50,24 @@
         <v-icon v-if="goDark==true">fas fa-sun</v-icon>
         <v-icon v-else>fas fa-moon</v-icon>
       </v-btn>
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items class="hidden-sm-and-down" v-if="userInfo === null">
+        <v-btn flat to="/" active-class="green--text headline">Home</v-btn>
+        <v-btn flat to="/contact" active-class="green--text headline">Contact</v-btn>
+        <v-btn flat to="/login" active-class="green--text headline">Login</v-btn>
+        <v-btn @click="changeTheme" depressed small icon>
+          <v-icon v-if="goDark==true">fas fa-sun</v-icon>
+          <v-icon v-else>fas fa-moon</v-icon>
+        </v-btn>
+      </v-toolbar-items>
+
+      <v-toolbar-items class="hidden-sm-and-down" v-else>
         <v-btn flat to="/" active-class="green--text headline">Home</v-btn>
         <v-btn flat to="/Apt" active-class="green--text headline">Apt</v-btn>
         <v-btn flat to="/services" active-class="green--text headline">Services</v-btn>
         <v-btn flat to="/portfolio" active-class="green--text headline">Portfolio</v-btn>
         <v-btn flat to="/blog" active-class="green--text headline">Blog</v-btn>
         <v-btn flat to="/contact" active-class="green--text headline">Contact</v-btn>
-        <v-btn flat to="/login" active-class="green--text headline">Login</v-btn>
+        <v-btn flat to="/" active-class="" @click.prevent="onClickLogout">Logout</v-btn>
         <v-btn @click="changeTheme" depressed small icon>
           <v-icon v-if="goDark==true">fas fa-sun</v-icon>
           <v-icon v-else>fas fa-moon</v-icon>
@@ -68,6 +78,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   props: {
     goDark: {
@@ -79,9 +91,25 @@ export default {
       drawer: null
     };
   },
+  computed: {
+    ...mapState(["userInfo", "isLogin"])
+  },
   methods: {
     changeTheme() {
       this.$emit("changeTheme", this.goDark);
+    },
+    onClickLogout() {
+      alert("로그아웃 하시겠습니까?");
+      this.$store
+        .dispatch("LOGOUT")
+        .then(() => {
+          // this.$router.push({ name: "" });
+          if (this.$route.path !== "/") this.$router.replace("/");
+          
+        })
+        .catch(() => {
+          console.log("로그아웃 문제!!!");
+        });
     }
   }
 };

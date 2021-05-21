@@ -1,49 +1,22 @@
 <template>
-    <v-container grid-list-xl>
-        <v-layout row justify-center align-center wrap class="mt-4 pt-2">
+        <div class="regist">
+        <h1 class="underline">로그인 
         
-        <v-flex xs12 sm12 md6 lg6 xl6>
-            <h2 class="pb-4 mb-4">
-            <span>Login</span>
-            <span class="green--text">Form</span>
-            </h2>
-
-            <form>
-            <v-text-field
-                userid="id"
-                color="green"
-                background-color="transparent"
-                v-model="id"
-    
-                label="Id"
-                required
-            ></v-text-field>
-            <v-text-field
-                userpwd="password"
-                color="green"
-                background-color="transparent"
-                v-model="password"
-                
-                label="password"
-                required
-            ></v-text-field>
-            
-            <v-btn
-                @click="submit"
-                type="submit"
-                color="green"
-                class="white--text"
-                
-            >SEND MESSAGE</v-btn>
-            <v-btn @click="clear">clear</v-btn>
-            </form>
-        </v-flex>
-        </v-layout>
-    </v-container>
+        
+        </h1>
+        <div class="regist_form">
+            <label for="id">아이디</label>
+            <input type="text" id="id" name="id" v-model="id" />
+            <label for="password">비밀번호</label>
+            <input type="text" id="password" name="password" v-model="password" /><br />
+            <button v- @click="submit">제출</button>
+        </div>
+    </div>
 </template>
 
 <script>
 import http from '@/util/http-common';
+//import axios from 'axios';
 export default {
     data() {
         return {
@@ -55,7 +28,7 @@ export default {
     methods: {
         submit() {
             alert(`${this.$store.state.host}/user/login`);    
-            http.post(`/user/login`, { userid: this.id, userpwd: this.password}).then(
+            http.post('/user/login', { userid: this.id, userpwd: this.password}).then(
                 res=> {
                     console.log(res);
                     this.$store.commit('loginToken',res.data.token);
@@ -84,4 +57,13 @@ export default {
 </script>
 
 <style>
+.regist {
+    padding: 10px;
+}
+.regist_form {
+    text-align: left;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
 </style>

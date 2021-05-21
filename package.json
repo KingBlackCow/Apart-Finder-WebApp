@@ -12,6 +12,7 @@
     "bootstrap": "^5.0.1",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^2.6.9",
+    "jwt-decode": "^3.1.2",
     "marked": "^0.7.0",
     "storyblok-js-client": "^1.0.32",
     "storyblok-vue": "^1.0.5",

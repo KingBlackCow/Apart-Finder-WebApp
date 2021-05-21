@@ -2,9 +2,25 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Meta from 'vue-meta'
-import Apt from '@/views/Apt.vue';
+import Join from "@/views/user/Join.vue";
+import Login from "@/views/user/Login.vue";
+//import Apt from '@/views/Apt.vue';
 Vue.use(Router);
 Vue.use(Meta)
+
+const onlyAuthUser = async (to, from, next) => {
+  let token = localStorage.getItem("access-token");
+  if (store.state.userInfo == null && token) {
+    await store.dispatch("GET_MEMBER_INFO", token);
+  }
+  if (store.state.userInfo === null) {
+    alert("로그인이 필요한 페이지입니다..");
+    // next({ name: "login" });
+    router.push({ name: "login" });
+  } else {
+    next();
+  }
+};
 
 export default new Router({
   mode: "history",
@@ -81,10 +97,14 @@ export default new Router({
         import( /* webpackChunkName: "about" */ "./views/Apt.vue")
     },
     {
+      path: "/join",
+      name: "join",
+      component: Join
+    },
+    {
       path: "/login",
-      name: "Login",
-      component: () =>
-        import( /* webpackChunkName: "about" */ "./views/Login.vue")
+      name: "login",
+      component: Login
     },
   ]
 });
