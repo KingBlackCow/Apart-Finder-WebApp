@@ -12,7 +12,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-
 export default {
   name: 'SearchBar',
   data() {
@@ -44,11 +43,17 @@ export default {
       // this.getAdd({city, gu, dong}).then({
       //   this.getAptList(address.dongCode);
       // });
+      
     },
+    
+    
     // sendKeyword() {
     //   if (address.dongCode) this.getAptList(address.dongCode);
     //   this.dongCode = '';
     // },
+    
+      
+    
   },
   created() {
     this.getCityList();

@@ -3,19 +3,12 @@
     <v-layout row justify-center align-center wrap class="mt-4 pt-2">
       <v-flex xs12 sm12 md6 lg6 xl6>
         <h2 class="pb-4 mb-4">
-          <span>Contact</span>
+          <span>Modify</span>
           <span class="green--text">Form</span>
         </h2>
 
         <form method="POST">
-          <v-text-field
-            id="user.userid"
-            color="green"
-            background-color="transparent"
-            v-model="user.userid"
-            label="Id"
-            required
-          ></v-text-field>
+          user.userid={{ userInfo.userid }},
           <v-text-field
             id="user.userpwd"
             color="green"
@@ -56,7 +49,7 @@
             type="button"
             color="green"
             class="white--text"
-            @click="submit"
+            @click="modify"
           >SEND MESSAGE</b-button>
           <v-btn @click="clear">clear</v-btn>
         </form>
@@ -73,6 +66,7 @@ import {
   maxLength,
   email,
 } from "vuelidate/lib/validators";
+import { mapState } from "vuex";
 export default {
   metaInfo: {
     title: "Contact",
@@ -117,22 +111,6 @@ export default {
     };
   },
   methods: {
-    submit() {
-      const instance = createInstance();
-      instance.post("/user/confirm/join", JSON.stringify(this.user))
-      .then(
-        (response) => {
-          if (response.data.message === "success") {
-            alert("회원가입 완료");
-            this.$router.push("/");
-          } else {
-            alert("회원가입 실패");
-          }
-        }
-      )
-      .catch();
-  
-    },
     clear() {
       this.$v.$reset();
       this.user.userid="";
@@ -140,9 +118,26 @@ export default {
       this.user.username = "";
       this.user.email = "";
       this.user.address = "";
-    }
+    },
+    modify() {
+      const instance = createInstance();
+      
+      instance.post("/user/confirm/modify", JSON.stringify(this.user))
+      .then(
+        (response) => {
+          if (response.data.message === "success") {
+            alert("회원변경 완료");
+            this.$router.push("/");
+          } else {
+            alert("회원변경 실패");
+          }
+        }
+      )
+      .catch();
+    },
   },
   computed: {
+    ...mapState(["userInfo"]),
     nameErrors() {
       const errors = [];
       if (!this.$v.name.$dirty) return errors;

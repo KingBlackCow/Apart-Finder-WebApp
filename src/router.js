@@ -4,6 +4,8 @@ import Home from "./views/Home.vue";
 import Meta from 'vue-meta'
 import Join from "@/views/user/Join.vue";
 import Login from "@/views/user/Login.vue";
+import Mypage from "@/views/user/MyPage.vue";
+import Modify from "@/views/user/Modify.vue";
 //import Apt from '@/views/Apt.vue';
 Vue.use(Router);
 Vue.use(Meta)
@@ -105,6 +107,16 @@ export default new Router({
       path: "/login",
       name: "login",
       component: Login
+    },
+    {
+      path: "/mypage",
+      name: "mypage",
+      component: Mypage
+    },
+    {
+      path: "/modify",
+      name: "modify",
+      component: Modify
     },
   ]
 });

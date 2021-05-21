@@ -65,8 +65,7 @@
         <v-btn flat to="/Apt" active-class="green--text headline">Apt</v-btn>
         <v-btn flat to="/services" active-class="green--text headline">Services</v-btn>
         <v-btn flat to="/portfolio" active-class="green--text headline">Portfolio</v-btn>
-        <v-btn flat to="/blog" active-class="green--text headline">Blog</v-btn>
-        <v-btn flat to="/contact" active-class="green--text headline">Contact</v-btn>
+        <v-btn flat to="/mypage" active-class="green--text headline">Mypage</v-btn>
         <v-btn flat to="/" active-class="" @click.prevent="onClickLogout">Logout</v-btn>
         <v-btn @click="changeTheme" depressed small icon>
           <v-icon v-if="goDark==true">fas fa-sun</v-icon>

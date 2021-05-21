@@ -20,16 +20,16 @@
 import { mapGetters } from 'vuex';
 
 export default {
-    // data() {
-    //     return {
-    //         // getLatLng : [
-    //         //     {position : {
-    //         //         lat: 37.58936620000001,
-    //         //         lng: 126.9000000,
-    //         //     }},
-    //         // ]
-    //     }
-    // },
+    data() {
+        return {
+            getLatLng : [
+                {position : {
+                    lat: 37.58936620000001,
+                    lng: 126.9000000,
+                }},
+            ]
+        }
+    },
     computed: {
         ...mapGetters([
             'address',
@@ -41,11 +41,11 @@ export default {
             }
             return {lat: Number(this.address.lat), lng: Number(this.address.lng)};
         },
-        getLatLng: function(){
+        /*getLatLng: function(){
             let markers = [];
 
             this.apts.forEach(element => {
-                let addressObj = {
+                let addressObj = {}
                     address_line_1: element.법정동 + " " + element.도로명 + " " + element.아파트,
                 }
 
@@ -60,7 +60,7 @@ export default {
 
             console.log(markers);
             return markers;
-        }
+        }*/
     },
 }
 </script>

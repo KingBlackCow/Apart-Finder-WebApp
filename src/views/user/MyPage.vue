@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navi />
+    
     <b-container class="mt-4" v-if="userInfo">
       <b-row>
         <b-col></b-col>
@@ -56,7 +56,7 @@
             </b-container>
             <hr class="my-4" />
 
-            <b-button variant="primary" href="#" class="mr-1"
+            <b-button variant="primary" class="mr-1" @click.prevent="modify"
               >정보수정</b-button
             >
             <b-button variant="danger" href="#">회원탈퇴</b-button>
@@ -71,7 +71,7 @@
 <script>
 import Navi from "@/components/common/Navi";
 import { mapState } from "vuex";
-
+import { createInstance } from "@/api/index.js";
 export default {
   name: "mypage",
   components: {
@@ -79,7 +79,12 @@ export default {
   },
   computed: {
     ...mapState(["userInfo"])
-  }
+  },
+  methods: {
+    modify() {
+      this.$router.push('/modify');
+    },
+  },
 };
 </script>
 
