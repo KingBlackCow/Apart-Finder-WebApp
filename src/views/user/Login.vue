@@ -40,7 +40,7 @@
                 @click="confirm"
                 >로그인</b-button
               >
-              <router-link :to="{ name: 'join' }">
+              <router-link :to="{ name: 'contact' }">
                 <b-button type="button" variant="success" class="m-1"
                   >회원가입</b-button
                 >
@@ -50,8 +50,7 @@
         </b-col>
         <b-col></b-col>
       </b-row>
-    </b-container>
-   
+    </b-container> 
   </div>
 </template>
 
@@ -94,7 +93,7 @@ export default {
         },
         (error) => {
           console.error(error);
-          alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+          alert("에러입니다.");
         }
       );
     }

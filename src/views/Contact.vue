@@ -34,56 +34,57 @@
           <span class="green--text">Form</span>
         </h2>
 
-        <form method="POST" action="https://formspree.io/eldin@zaimovic.com">
+        <form method="POST">
           <v-text-field
-            id="id"
+            id="user.userid"
             color="green"
             background-color="transparent"
-            v-model="id"
-            :error-messages="IdErrors"
+            v-model="user.userid"
             label="Id"
             required
-            @blur="$v.id.$touch()"
           ></v-text-field>
           <v-text-field
-            name="name"
+            id="user.userpwd"
             color="green"
             background-color="transparent"
-            v-model="name"
+            v-model="user.userpwd"
+            label="Password"
+            required
+          ></v-text-field>
+          <v-text-field
+            name="user.username"
+            color="green"
+            background-color="transparent"
+            v-model="user.username"
             :error-messages="nameErrors"
             label="Name"
             required
-            @blur="$v.name.$touch()"
           ></v-text-field>
           <v-text-field
             type="email"
             color="green"
             background-color="transparent"
-            name="email"
-            v-model="email"
+            name="user.email"
+            v-model="user.email"
             :error-messages="emailErrors"
             label="E-mail"
             required
-            @blur="$v.email.$touch()"
           ></v-text-field>
           <v-text-field
-            mbti="mbti"
+            address="address"
             color="green"
             background-color="transparent"
-            :counter="4"
-            :error-messages="bodyErrors"
-            v-model="mbti"
-            label="Mbti"
-            name="mbti"
-            @blur="$v.mbti.$touch()"
+            v-model="user.address"
+            :error-messages="nameErrors"
+            label="Address"
+            required
           ></v-text-field>
-          <v-btn
-            @click="submit"
-            type="submit"
+          <b-button
+            type="button"
             color="green"
             class="white--text"
-            :disabled=" (mbti.length<4)"
-          >SEND MESSAGE</v-btn>
+            @click="submit"
+          >SEND MESSAGE</b-button>
           <v-btn @click="clear">clear</v-btn>
         </form>
       </v-flex>
@@ -92,12 +93,14 @@
 </template>
 
 <script>
+import { join } from "@/api/user.js";
 import { validationMixin } from "vuelidate";
+import axios from 'axios'
+import { createInstance } from "@/api/index.js";
 import {
   required,
   maxLength,
   email,
-  minLength
 } from "vuelidate/lib/validators";
 export default {
   metaInfo: {
@@ -130,26 +133,42 @@ export default {
   validations: {
     name: { required, maxLength: maxLength(20) },
     email: { required, email },
-    mbti: { required, minLength: minLength(4) }
   },
   data() {
     return {
-      id:"",
-      name: "",
-      email: "",
-      mbti: ""
+      user: {
+        userid:"",
+        userpwd:"",
+        username: "",
+        email: "",
+        address: ""
+      },
     };
   },
   methods: {
     submit() {
-      this.$v.$touch();
+      const instance = createInstance();
+      instance.post("/user/confirm/join", JSON.stringify(this.user))
+      .then(
+        (response) => {
+          if (response.data.message === "success") {
+            alert("회원가입 완료");
+            this.$router.push("/");
+          } else {
+            alert("회원가입 실패");
+          }
+        }
+      )
+      .catch();
+  
     },
     clear() {
       this.$v.$reset();
-      this.id="";
-      this.name = "";
-      this.email = "";
-      this.mbti = "";
+      this.user.userid="";
+      this.user.userpwd="";
+      this.user.username = "";
+      this.user.email = "";
+      this.user.address = "";
     }
   },
   computed: {

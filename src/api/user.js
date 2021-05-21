@@ -11,7 +11,10 @@ function login(user, success, fail) {
   );
   const body = {
     userid: user.userid,
-    userpwd: user.userpwd
+    userpwd: user.userpwd,
+    username:user.name,
+    email: user.email,
+    address: user.address,
   };
 
   instance
@@ -19,6 +22,23 @@ function login(user, success, fail) {
     .then(success)
     .catch(fail);
 }
+
+function join(user, success, fail) {
+  alert("이게되네");
+  const body = {
+    userid: user.userid,
+    userpwd: user.userpwd,
+    username: user.username,
+    email: user.email,
+    address: user.address,
+  };
+
+  instance
+    .post("/user/confirm/join", JSON.stringify(body))
+    .then(success)
+    .catch(fail);
+}
+
 
 async function findById(userid, success, fail) {
   instance.defaults.headers["access-token"] = window.localStorage.getItem(
