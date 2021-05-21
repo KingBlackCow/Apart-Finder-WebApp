@@ -1,11 +1,18 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-      <b-col>
+      <b-col cols = "4">
         <h2>아파트 매매 정보</h2>
       </b-col>
+      <b-col>
+        <apt-search-bar />
+      </b-col>
     </b-row>
-    <apt-search-bar />
+    <b-row>
+      <b-col cols = "6">
+        <gmap />
+      </b-col>
+    </b-row>
     <b-row>
       <b-col cols="6" align="left">
         <apt-list />
@@ -13,10 +20,6 @@
       <b-col cols="6">
         <apt-detail />
       </b-col>
-    </b-row>
-    <b-row>
-      <gmap>
-      </gmap>
     </b-row>
   </b-container>
 </template>
