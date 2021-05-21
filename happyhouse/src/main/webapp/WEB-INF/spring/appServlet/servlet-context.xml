@@ -28,7 +28,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.ssafy.happyhouse.controller, com.ssafy.interceptor" />
+	<context:component-scan base-package="com.ssafy.happyhouse.controller, com.ssafy.interceptor, com.ssafy.common" />
 	
 <!-- 	<beans:bean id="confirm" class="com.ssafy.interceptor.ConfirmInterceptor"/>
  -->
