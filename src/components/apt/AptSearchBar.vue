@@ -3,12 +3,9 @@
 
     <!-- 아파트 주소 검색 -->
     <b-col class="sm-3" align="left">
-
       <b-form-select v-model="city" :options="cityList" @change="getGuList(city)" style="background-color: blue"></b-form-select>
       <b-form-select v-model="gu" :options="guList" @change="getDongList({city, gu})" style="background-color: blue"></b-form-select>
       <b-form-select v-model="dong" :options="dongList" @change="getAdd([city, gu, dong])" style="background-color: blue"></b-form-select>
-
-
     </b-col>
   </b-row>
 </template>
@@ -42,6 +39,16 @@ export default {
       'getDongList',
       'getAdd',
     ]),
+    getApart() {
+      this.getAdd([this.city, this.gu, this.dong]);
+      // this.getAdd({city, gu, dong}).then({
+      //   this.getAptList(address.dongCode);
+      // });
+    },
+    // sendKeyword() {
+    //   if (address.dongCode) this.getAptList(address.dongCode);
+    //   this.dongCode = '';
+    // },
   },
   created() {
     this.getCityList();
@@ -50,5 +57,7 @@ export default {
 </script>
 
 <style>
-
+  b-form-select{
+    color: red;
+  }
 </style>

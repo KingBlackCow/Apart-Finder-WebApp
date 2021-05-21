@@ -32,6 +32,9 @@ export default new Vuex.Store({
         },
         address(state) {
             return state.address;
+        },
+        apts(state) {
+            return state.apts;
         }
     },
     mutations: {
@@ -41,7 +44,7 @@ export default new Vuex.Store({
             state.apts = apts;
         },
         SELECT_APT(state, apt) {
-            console.log(apts);
+            console.log(apt);
             state.apt = apt;
         },
         SET_CITY(state, data) {

@@ -7,6 +7,7 @@ import VueAnalytics from 'vue-analytics'
 import store from './store';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import Geocoder from "@pderas/vue2-geocoder";
 import axios from 'axios'
 
 // Install BootstrapVue
@@ -43,4 +44,10 @@ Vue.use(VueGoogleMaps, {
     key: 'AIzaSyAAHuS3QzpixOgCb9AOfb9yE7ITxgVmigs',
     libraries: 'places',
   }
+})
+Vue.use(Geocoder, {
+  defaultCountryCode: 'KR', // e.g. 'CA'
+  defaultLanguage:    'ko', // e.g. 'en'
+  defaultMode:        'address', // or 'lat-lng'
+  googleMapsApiKey:   'AIzaSyAAHuS3QzpixOgCb9AOfb9yE7ITxgVmigs'
 })
