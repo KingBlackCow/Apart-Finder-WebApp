@@ -31,7 +31,6 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam Map<String, String> map, Model model, HttpSession session, HttpServletResponse response) {
 		try {
-			System.out.println("hihi222222");
 			MemberDto memberDto = userService.login(map);
 			if(memberDto != null) {
 				session.setAttribute("userinfo", memberDto);

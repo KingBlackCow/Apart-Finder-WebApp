@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.mapper.MemberMapper;
+import com.ssafy.happyhouse.model.mapper.UserMapper;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -23,6 +24,17 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberDto userInfo(String userid) throws Exception {
 		return sqlSession.getMapper(MemberMapper.class).userInfo(userid);
+	}
+	
+
+	@Override
+	public int userRegister(MemberDto memberDto) {
+		return sqlSession.getMapper(MemberMapper.class).userRegister(memberDto);
+	}
+
+	@Override
+	public int userModify(MemberDto memberDto) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).userModify(memberDto);
 	}
 
 }

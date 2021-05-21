@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.ssafy.happyhouse.model.MemberDto;
@@ -39,9 +40,7 @@ public class MemberController {
 			@RequestBody @ApiParam(value = "로그인 시 필요한 회원정보(아이디, 비밀번호).", required = true) MemberDto memberDto) {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
-		System.out.println("hello1");
 		try {
-			System.out.println("hello2");
 			System.out.println(memberDto.getUserid());
 			System.out.println(memberDto.getUserpwd());
 			MemberDto loginUser = memberService.login(memberDto);
@@ -94,5 +93,57 @@ public class MemberController {
 		}
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
-
+	
+	@ApiOperation(value = "가입", notes = "", response = Map.class)
+	@PostMapping("/confirm/join")
+	public ResponseEntity<Map<String, Object>> join(@RequestBody @ApiParam(value = "가입 시 필요한 회원정보(아이디, 비밀번호).", required = true)MemberDto memberDto, Model model, HttpSession session) throws Exception {
+		System.out.println("join");
+		System.out.println(memberDto.getUserid());
+		System.out.println(memberDto.getUserpwd());
+		HttpStatus status = HttpStatus.ACCEPTED;
+		Map<String, Object> resultMap = new HashMap<>();
+		try {
+			System.out.println("wow");
+			memberService.userRegister(memberDto);
+			System.out.println("qwe");
+			resultMap.put("message", SUCCESS);
+			status = HttpStatus.ACCEPTED; 
+		}catch(Exception e) {
+			resultMap.put("message", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@ApiOperation(value = "변경", notes = "", response = Map.class)
+	@PostMapping("/confirm/modify")
+	public ResponseEntity<Map<String, Object>> modify(@RequestBody @ApiParam(value = "가입 시 필요한 회원정보(아이디, 비밀번호).",required =true)MemberDto memberDto, Model model, HttpSession session) {
+		
+		System.out.println(memberDto.getUserid());
+		System.out.println(memberDto.getUserpwd());
+		HttpStatus status = HttpStatus.ACCEPTED;
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		try {
+			System.out.println("wow111");
+			memberService.userModify(memberDto);
+			System.out.println("qwe111");
+			resultMap.put("message", SUCCESS);
+			status = HttpStatus.ACCEPTED; 
+		}catch(Exception e) {
+			resultMap.put("message", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+//	@ApiOperation(value = "삭제", notes = "", response = Map.class)
+//	@PostMapping("/confirm/")
+//	public String delete(MemberDto memberDto, Model model, HttpSession session) {
+//		MemberDto memberDto2 = (MemberDto) session.getAttribute("userinfo");
+//		System.out.println(memberDto2.getUserid());
+//		//memberService.userDelete(memberDto2.getUserid());
+//		session.invalidate();
+//		return "user/login";
+//	}
 }
