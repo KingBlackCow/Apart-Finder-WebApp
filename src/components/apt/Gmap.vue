@@ -30,7 +30,7 @@ export default {
             'address',
             'apts',
         ]),
-<<<<<<< Updated upstream
+
         getAdd: function(){
             if(isNaN(this.address.lat)){
                 return {lat: 37.58936620000001, lng: 126.9000000};
