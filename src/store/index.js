@@ -6,17 +6,28 @@ import http from "@/util/http-common";
 import router from '../router';
 import jwt_decode from "jwt-decode";
 import { findById } from "@/api/user.js";
+import Geocoder from "@pderas/vue2-geocoder";
 
 Vue.use(Vuex);
+Vue.use(Geocoder, {
+    defaultCountryCode: 'KR', // e.g. 'CA'
+    defaultLanguage: 'ko', // e.g. 'en'
+    defaultMode: 'address', // or 'lat-lng'
+    googleMapsApiKey: 'AIzaSyAAHuS3QzpixOgCb9AOfb9yE7ITxgVmigs'
+});
 
 export default new Vuex.Store({
     state: {
         apts: [],
         apt: Object,
+
         cityList: [],
         guList: [],
         dongList: [],
+
         address: Object,
+        markers: [],
+
         isLogin: false, // 로그인 여부
         userInfo: null,
         selectedImage: String,
@@ -60,6 +71,12 @@ export default new Vuex.Store({
             console.log(selectedImage);
             state.selectedImage = selectedImage;
         },
+        SET_MARKER(state, data) {
+            console.log(typeof (data));
+            console.log(data);
+
+            state.apts[data.idx].position = data.position;
+        },
         SET_CITY(state, data) {
             state.cityList.length = 0;
             console.log(data);
@@ -80,7 +97,8 @@ export default new Vuex.Store({
             });
         },
         SET_ADD(state, data) {
-            state.address = data.data;
+            console.log(data);
+            state.address = data;
         },
         setIsLogined(state, isLogin) {
             state.isLogin = isLogin;
@@ -101,8 +119,8 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        getAptList({ commit, state}) {
-            console.log(state.address.dongcode);
+        getAptList({ commit, dispatch }, dongcode) {
+            console.log(dongcode);
             // vue cli enviroment variables 검색
             //.env.local file 생성.
             // 반드시 VUE_APP으로 시작해야 한다.
@@ -113,7 +131,7 @@ export default new Vuex.Store({
                 'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev';
 
             const params = {
-                LAWD_CD: state.address.dongcode,
+                LAWD_CD: dongcode,
                 DEAL_YMD: '202010',
                 serviceKey: decodeURIComponent(SERVICE_KEY),
             };
@@ -121,15 +139,34 @@ export default new Vuex.Store({
             // npm install --save axios
             axios
                 .get(SERVICE_URL, {
-                params,
+                    params,
                 })
                 .then((response) => {
-                // console.log(response.data.response.body.items.item);
-                commit('GET_APT_LIST', response.data.response.body.items.item);
+                    // console.log(response.data.response.body.items.item);
+                    commit('GET_APT_LIST', response.data.response.body.items.item);
+
+                    dispatch('getMarkers', response.data.response.body.items.item);
                 })
                 .catch((error) => {
-                console.dir(error);
+                    console.dir(error);
                 });
+        },
+        getMarkers({ commit }, item) {
+            item.forEach((element, idx) => {
+                let addressObj = {
+                    address_line_1: element.법정동 + " " + element.도로명 + " " + element.아파트,
+                }
+
+                Vue.$geocoder.send(addressObj, response => {
+                    commit('SET_MARKER', {
+                        idx: idx,
+                        position: {
+                            lat: response.results[0].geometry.location.lat, // 해당 아파트의 lat
+                            lng: response.results[0].geometry.location.lng, // 해당 아파트의 lng
+                        }
+                    });
+                });    
+            });
         },
         selectApt({ commit }, apt) {
             commit('SELECT_APT', apt);
@@ -172,17 +209,16 @@ export default new Vuex.Store({
                 });
         },
         getAdd({ commit, dispatch }, add) {
-            console.log(this);
             http
-                .get("/apart/"+add[0]+"/"+add[1]+"/"+add[2])
-                .then((data) => {
-                    console.log(data);
-                    commit("SET_ADD", data);
+                .get("/apart/" + add[0] + "/" + add[1] + "/" + add[2])
+                .then((response) => {
+                    console.log(response);
+                    commit("SET_ADD", response.data);
 
-                    dispatch('getAptList');
+                    dispatch('getAptList', response.data.dongcode);
                 })
-                .catch(() => {
-                    alert("에러발생!");
+                .catch((error) => {
+                    console.dir(error);
                 });
         },
         getBooks(context) {
