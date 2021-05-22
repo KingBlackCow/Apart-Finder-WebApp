@@ -8,7 +8,7 @@
         </h2>
 
         <form method="POST">
-          user.userid={{ userInfo.userid }},
+          
           <v-text-field
             id="user.userpwd"
             color="green"
@@ -121,12 +121,16 @@ export default {
     },
     modify() {
       const instance = createInstance();
-      
+      this.user.userid=this.userInfo.userid;
       instance.post("/user/confirm/modify", JSON.stringify(this.user))
       .then(
         (response) => {
           if (response.data.message === "success") {
             alert("회원변경 완료");
+            this.userInfo.userpwd= this.user.userpwd;
+            this.userInfo.username= this.user.username;
+            this.userInfo.email= this.user.email;
+            this.userInfo.address= this.user.address;
             this.$router.push("/");
           } else {
             alert("회원변경 실패");
@@ -135,6 +139,9 @@ export default {
       )
       .catch();
     },
+  },
+  created() {
+    this.user.userpwd=userInfo.userpwd;
   },
   computed: {
     ...mapState(["userInfo"]),

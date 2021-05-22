@@ -1,9 +1,9 @@
 <template>
   <div>
-    <b-container class="bv-example-row">
+    <v-container row justify-center align-center wrap class="mt-4 pt-2">
       <b-row>
-        <b-col></b-col>
-        <b-col cols="8">
+        <b-col cols="4"></b-col>
+        <b-col cols="4">
           <b-card
             class="text-center mt-3"
             header-html="<h3>로그인</h3>"
@@ -48,18 +48,20 @@
             </b-form>
           </b-card>
         </b-col>
-        <b-col>
-          
-        </b-col>
+        <b-col cols="4"></b-col>
       </b-row>
       <b-row>
-        <div id="app">
-          <a :href="kakaoLoginLink" alt="kakao login">
-            <img alt="kakao logo" src="@/assets/kakao_login.png" />
-          </a>
-        </div>
+        <b-col cols="4"></b-col>
+        <b-col cols="4">
+          <div id="app">
+            <a :href="kakaoLoginLink" alt="kakao login">
+              <img alt="kakao logo" src="@/assets/kakao_login.png" />
+            </a>
+          </div>
+        </b-col>
+        <b-col cols="4"></b-col>
       </b-row>
-    </b-container> 
+    </v-container> 
   </div>
 </template>
 
