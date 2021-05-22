@@ -48,7 +48,16 @@
             </b-form>
           </b-card>
         </b-col>
-        <b-col></b-col>
+        <b-col>
+          
+        </b-col>
+      </b-row>
+      <b-row>
+        <div id="app">
+          <a :href="kakaoLoginLink" alt="kakao login">
+            <img alt="kakao logo" src="@/assets/kakao_login.png" />
+          </a>
+        </div>
       </b-row>
     </b-container> 
   </div>
@@ -69,7 +78,9 @@ export default {
         userid: null,
         userpwd: null
       },
-      isLoginError: false
+      isLoginError: false,
+      client_id: "916d7a1087ccb6494372f576d3911baf",
+      redirect_uri: "http://localhost:8080",
     };
   },
   methods: {
@@ -97,10 +108,27 @@ export default {
         }
       );
     }
-  }
+  },
+  computed: {
+    kakaoLoginLink() {
+      return `https://kauth.kakao.com/oauth/authorize?client_id=${this.client_id}&redirect_uri=${this.redirect_uri}&response_type=code`;
+    },
+  },
+
+
 };
 </script>
 
-<style>
+<style scoped>
+/*#app {
+  width: 400px;
+  padding: 24px;
+  margin: 100px auto 0 auto;
+  text-align: center;
+  border: 1px solid #cccccc;
+}*/
 
+#app img {
+  width: 200px;
+} 
 </style>

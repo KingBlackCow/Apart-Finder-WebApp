@@ -23,7 +23,7 @@
 
     <br>
 
-    <vue-typer class="headline" :repeat="0" text="MBTI별 팀 매칭 서비스"></vue-typer>
+    <vue-typer class="headline" :repeat="0" text="Apart Selling Finder"></vue-typer>
     <vue-typer
       :text="text1"
       :repeat="Infinity"
@@ -48,7 +48,7 @@
             </h3>
             <div>
               <p>
-                보다 완벽한 팀선택을 위한 서비스!
+                보다 완벽한  집 선택을 위한 서비스!
               </p>
             
               <!-- <span class="green--text font-weight-bold">VUE</span> -->
@@ -162,12 +162,12 @@ export default {
         },
         { href: "https://www.instagram.com/matricar", icon: "fab fa-instagram" }
       ],
-      text1: ["당신의 팀을 기대합니다.", "누구보다 완벽한 팀", "가장 맞는 팀"],
+      text1: ["당신의 집을 기대합니다.", "누구보다 완벽한 집", "가장 내게 맞는 집"],
     
-      leftImage: "https://i.postimg.cc/XXMnBdDD/study.jpg",
-      rightImage: "https://i.postimg.cc/Px3WHrFq/mbti.jpg",
-      leftImage2: "https://i.postimg.cc/XXMnBdDD/study.jpg",
-      rightImage2: "https://i.postimg.cc/MHnGQWZX/2.jpg",
+      leftImage: "https://i.postimg.cc/T30Z4F1x/apt1.jpg",
+      rightImage: "https://i.postimg.cc/3N2qCbVP/apt2.jpg",
+      leftImage2: "https://i.postimg.cc/T30Z4F1x/apt1.jpg",
+      rightImage2: "https://i.postimg.cc/3N2qCbVP/apt2.jpgg",
       sliderLine: 0,
       hSize: 0,
       sliderPosition: 0.5,

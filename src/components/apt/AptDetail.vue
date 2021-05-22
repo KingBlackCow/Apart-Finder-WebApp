@@ -6,7 +6,7 @@
       >
     </b-row>
     <b-row class="mb-2 mt-1">
-      <b-col><img src="@/assets/apt.png" alt=""/></b-col>
+      <b-col><p v-if="selectedImage"><img style="width:100%" :src="selectedImage" alt=""></p></b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -43,8 +43,9 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'AptDetail',
+  
   computed: {
-    ...mapState(['apt']),
+    ...mapState(['apt','selectedImage']),
   },
   filters: {
     price(value) {
@@ -52,6 +53,15 @@ export default {
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
   },
+  methods: {
+    randomItem (items) {
+      return items[Math.floor(Math.random()*items.length)];
+    }
+    
+  },
+  created() {
+    this.selectedImage = this.randomItem(this.images)
+  }
 };
 </script>
 

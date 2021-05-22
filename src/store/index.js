@@ -18,7 +18,8 @@ export default new Vuex.Store({
         dongList: [],
         address: Object,
         isLogin: false, // 로그인 여부
-        userInfo: null
+        userInfo: null,
+        selectedImage :String,
     },
     getters: {
         cityList(state) {
@@ -46,6 +47,10 @@ export default new Vuex.Store({
         SELECT_APT(state, apt) {
             console.log(apt);
             state.apt = apt;
+        },
+        SELECT_IMG(state, selectedImage) {
+            console.log(selectedImage);
+            state.selectedImage = selectedImage;
         },
         SET_CITY(state, data) {
             state.cityList.length = 0;
@@ -114,6 +119,9 @@ export default new Vuex.Store({
         },
         selectApt({ commit }, apt) {
             commit('SELECT_APT', apt);
+        },
+        selectAptImg({ commit }, selectedImage) {
+            commit('SELECT_IMG', selectedImage);
         },
         getCityList({ commit }) {
             http
