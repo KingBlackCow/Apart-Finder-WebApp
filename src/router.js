@@ -6,6 +6,7 @@ import Join from "@/views/user/Join.vue";
 import Login from "@/views/user/Login.vue";
 import Mypage from "@/views/user/MyPage.vue";
 import Modify from "@/views/user/Modify.vue";
+import Theme from "@/views/Theme.vue";
 //import Apt from '@/views/Apt.vue';
 Vue.use(Router);
 Vue.use(Meta)
@@ -109,6 +110,7 @@ export default new Router({
       component: Login
     },
     {
+<<<<<<< Updated upstream
       path: "/mypage",
       name: "mypage",
       component: Mypage
@@ -117,6 +119,11 @@ export default new Router({
       path: "/modify",
       name: "modify",
       component: Modify
+    }
+    {
+      path: "/theme",
+      name: "theme",
+      component: Theme
     },
   ]
 });
