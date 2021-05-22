@@ -6,6 +6,7 @@ import Join from "@/views/user/Join.vue";
 import Login from "@/views/user/Login.vue";
 import Mypage from "@/views/user/MyPage.vue";
 import Modify from "@/views/user/Modify.vue";
+import Book from "@/views/Book.vue";
 //import Apt from '@/views/Apt.vue';
 Vue.use(Router);
 Vue.use(Meta)
@@ -117,6 +118,36 @@ export default new Router({
       path: "/modify",
       name: "modify",
       component: Modify
+    },
+    {
+      name: "book",
+      path: "/book",
+      component: Book,
+      children: [
+        {
+          path: "",
+          name: "book-list",
+          component: () => import("@/components/book/BookList.vue")
+        },
+        {
+          path: "create",
+          name: "book-create",
+          component: () => import("@/components/book/BookCreate.vue")
+        },
+        {
+          path: "view",
+          name: "book-view",
+          component: () => import("@/components/book/BookView.vue")
+        },
+        {
+          path: "modify/:isbn",
+          name: "book-modify",
+          component: () => import("@/components/book/BookModify.vue")
+        }
+      ],
+      redirect: () => {
+        return "/book";
+      }
     },
   ]
 });

@@ -19,7 +19,9 @@ export default new Vuex.Store({
         address: Object,
         isLogin: false, // 로그인 여부
         userInfo: null,
-        selectedImage :String,
+        selectedImage: String,
+        books: [],
+        book: {}
     },
     getters: {
         cityList(state) {
@@ -36,6 +38,12 @@ export default new Vuex.Store({
         },
         apts(state) {
             return state.apts;
+        },
+        books(state) {
+            return state.books;
+        },
+        book(state) {
+            return state.book;
         }
     },
     mutations: {
@@ -84,6 +92,12 @@ export default new Vuex.Store({
         logout(state) {
             state.isLogin = false;
             state.userInfo = null;
+        },
+        setBooks(state, payload) {
+            state.books = payload;
+        },
+        setBook(state, payload) {
+            state.book = payload;
         }
     },
     actions: {
@@ -170,6 +184,21 @@ export default new Vuex.Store({
                 .catch(() => {
                     alert("에러발생!");
                 });
+        },
+        getBooks(context) {
+            http
+            .get("/book")
+            .then(({ data }) => {
+                context.commit("setBooks", data);
+            })
+            .catch(() => {
+                alert("에러발생!");
+            });
+        },
+        getBook(context, payload) {
+            http.get("/book/"+payload).then(({ data }) => {
+            context.commit("setBook", data);
+            });
         },
         async GET_MEMBER_INFO({ commit }, token) {
             let decode = jwt_decode(token);
