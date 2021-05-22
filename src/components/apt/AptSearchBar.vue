@@ -27,7 +27,6 @@ export default {
       'cityList',
       'guList',
       'dongList',
-      'address',
     ]),
   },
   methods: {
@@ -38,22 +37,6 @@ export default {
       'getDongList',
       'getAdd',
     ]),
-    getApart() {
-      this.getAdd([this.city, this.gu, this.dong]);
-      // this.getAdd({city, gu, dong}).then({
-      //   this.getAptList(address.dongCode);
-      // });
-      
-    },
-    
-    
-    // sendKeyword() {
-    //   if (address.dongCode) this.getAptList(address.dongCode);
-    //   this.dongCode = '';
-    // },
-    
-      
-    
   },
   created() {
     this.getCityList();
