@@ -22,6 +22,7 @@
 import TheHeader from "./components/TheHeader";
 import TheFooter from "./components/TheFooter";
 
+
 export default {
   name: "App",
   metaInfo: {
@@ -34,15 +35,20 @@ export default {
   },
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
+ 
   },
   data() {
-    return { goDark: true };
+    return { 
+      goDark: true,
+    };
+    
   },
   methods: {
     updateTheme(updatedTheme) {
       this.goDark = !updatedTheme;
-    }
+    },
+   
   }
 };
 </script>
