@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Meta from 'vue-meta'
 import Join from "@/views/user/Join.vue";
+import WishList from "@/views/WishList.vue";
 import Login from "@/views/user/Login.vue";
 import Mypage from "@/views/user/MyPage.vue";
 import Modify from "@/views/user/Modify.vue";
@@ -107,12 +108,16 @@ export default new Router({
       component: Join
     },
     {
+      path: "/wishlist",
+      name: "wishlist",
+      component: WishList
+    },
+    {
       path: "/login",
       name: "login",
       component: Login
     },
     {
-
       path: "/mypage",
       name: "mypage",
       component: Mypage

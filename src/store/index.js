@@ -32,7 +32,8 @@ export default new Vuex.Store({
         userInfo: null,
         selectedImage: String,
         books: [],
-        book: {}
+        book: {},
+        wishapts:[],
     },
     getters: {
         cityList(state) {
@@ -55,6 +56,9 @@ export default new Vuex.Store({
         },
         book(state) {
             return state.book;
+        },
+        wishapts(state) {
+            return state.wishapts;
         }
     },
     mutations: {
@@ -113,6 +117,9 @@ export default new Vuex.Store({
         },
         setBooks(state, payload) {
             state.books = payload;
+        },
+        setWishLists(state, payload) {
+            state.wishapts = payload;
         },
         setBook(state, payload) {
             state.book = payload;
@@ -231,11 +238,22 @@ export default new Vuex.Store({
                 alert("에러발생!");
             });
         },
+        getWishLists(context) {
+            http
+            .get("/wish")
+            .then(({ data }) => {
+                context.commit("setWishLists", data);
+            })
+            .catch(() => {
+                alert("에러발생!");
+            });
+        },
         getBook(context, payload) {
             http.get("/book/"+payload).then(({ data }) => {
             context.commit("setBook", data);
             });
         },
+        
         async GET_MEMBER_INFO({ commit }, token) {
             let decode = jwt_decode(token);
 

@@ -52,7 +52,7 @@ export default {
     }
     
   },
-  created() {
+  updated() {
     this.selectedImage = this.randomItem(this.images)
   }
 };

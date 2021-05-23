@@ -3,7 +3,7 @@
         :center="{lat: Number(address.lat), lng: Number(address.lng)}"
         :zoom="13"
         map-type-id="roadmap"
-        style="width: 800px; height: 400px"
+        style="width: 1300px; height: 600px"
         >
         <GmapMarker
             :key="index"

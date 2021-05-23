@@ -69,7 +69,7 @@ export default {
 }
 
 #book-list thead {
-  background-color: #ccc;
+ 
   font-weight: bold;
 }
 
@@ -80,7 +80,5 @@ export default {
   height: 50px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+
 </style>
