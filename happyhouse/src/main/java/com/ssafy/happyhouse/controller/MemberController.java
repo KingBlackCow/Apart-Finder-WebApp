@@ -71,7 +71,6 @@ public class MemberController {
 			HttpServletRequest request) {
 //		logger.debug("userid : {} ", userid);
 		Map<String, Object> resultMap = new HashMap<>();
-		System.out.println("무야호");
 		HttpStatus status = HttpStatus.ACCEPTED;
 		if (jwtService.isUsable(request.getHeader("access-token"))) {
 			logger.info("사용 가능한 토큰!!!");
@@ -121,13 +120,16 @@ public class MemberController {
 		
 		System.out.println(memberDto.getUserid());
 		System.out.println(memberDto.getUserpwd());
+		System.out.println(memberDto.getEmail());
+		System.out.println(memberDto.getAddress());
+
 		HttpStatus status = HttpStatus.ACCEPTED;
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		try {
-			System.out.println("wow111");
+			System.out.println("변경시도");
 			memberService.userModify(memberDto);
-			System.out.println("qwe111");
+			System.out.println("변경완료");
 			resultMap.put("message", SUCCESS);
 			status = HttpStatus.ACCEPTED; 
 		}catch(Exception e) {

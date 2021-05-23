@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.WishListMapper">
+
+	
+	<select id="wishList" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+	</select>
+	
+	<select id="wishListInfo" parameterType="String" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		where no = #{no}
+	</select>
+	
+	<insert id="wishListRegister" parameterType="wishListDto">
+		insert into wishlist (no, name, dong, floor, price)
+		values (#{no}, #{name}, #{dong}, #{floor}, #{price})
+	</insert>
+	
+	<delete id="wishListDelete" parameterType="String">
+		delete from wishlist
+		where no = #{no}
+	</delete>
+	
+</mapper>
