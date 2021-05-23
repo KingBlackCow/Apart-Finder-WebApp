@@ -2,15 +2,15 @@
     <b-container class="bv-example-row">
         <b-row>
             <b-col cols = "4">
-                <h2>테마별 매매 정보</h2>
-            </b-col>
-            <b-col>
-                <apt-search-bar />
+                <h2>시군구별 테마 정보</h2>
             </b-col>
         </b-row>
         <b-row>
+            <apt-search-bar />
+        </b-row>
+        <b-row>
             <b-col cols = "6">
-                <gmap />
+                <medical-chart />
             </b-col>
         </b-row>
     </b-container>
@@ -18,13 +18,13 @@
 
 <script>
 import AptSearchBar from '@/components/apt/AptSearchBar.vue';
-import Gmap from '@/components/apt/Gmap.vue';
+import MedicalChart from '@/components/theme/medical.vue';
 
 export default {
-    name: 'Apt',
+    name: 'Theme',
     components: {
         AptSearchBar,
-        Gmap,
+        MedicalChart,
     },
     data() {
         return {};
