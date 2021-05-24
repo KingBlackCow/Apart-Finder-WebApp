@@ -21,6 +21,7 @@ public interface ApartService {
 	List<HouseDeal> searchAll(HousePageBean Bean);
 	HouseDeal serach(int no);
 	List<String> getCityList() throws SQLException;
+	List<HouseDeal> getCityListRand() throws SQLException;
 	List<String> getGuList(String city) throws SQLException;
 	List<String> getDongList(String gu) throws SQLException;
 	List<HouseDeal> searchArea(Map<String, Object> map) throws SQLException;

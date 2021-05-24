@@ -57,6 +57,24 @@ public class ApartController {
 		}
 		return null;
 	}
+	@ApiOperation(value = "모든 도시의 랜덤정보를 반환한다.", response = List.class)
+	@GetMapping("/cityrand")
+	public ResponseEntity<List<HouseDeal>> getCityRand(Model model) {
+		try {
+			System.out.println("cityrand호출");
+			
+			for(HouseDeal tmp: apartservice.getCityListRand()) {
+				System.out.println(tmp.getDong());
+				System.out.println(tmp.getFloor());
+				System.out.println();
+			}
+			return new ResponseEntity<>(apartservice.getCityListRand(), HttpStatus.OK);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 	@ApiOperation(value = "모든 도시의 정보를 반환한다.", response = List.class)
 	@GetMapping("/{city}")

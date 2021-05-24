@@ -71,6 +71,10 @@ public class ApartServiceImpl implements ApartService {
 	public List<String> getCityList() throws SQLException {
 		return sqlSession.getMapper(ApartMapper.class).selectCity();
 	}
+	@Override
+	public List<HouseDeal> getCityListRand() throws SQLException {
+		return sqlSession.getMapper(ApartMapper.class).selectCityRand();
+	}
 
 	@Override
 	public List<String> getGuList(String city) throws SQLException {
@@ -91,5 +95,7 @@ public class ApartServiceImpl implements ApartService {
 	public BaseAddress searchDong(Map<String, Object> map) throws SQLException {
 		return sqlSession.getMapper(ApartMapper.class).selectBaseAddress(map);
 	}
+
+	
 
 }

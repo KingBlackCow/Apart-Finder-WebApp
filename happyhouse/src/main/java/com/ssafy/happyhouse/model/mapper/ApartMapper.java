@@ -15,4 +15,5 @@ public interface ApartMapper {
 	List<String> selectDong(String gu) throws SQLException;
 	List<String> selectGu(String city) throws SQLException;
 	List<String> selectCity() throws SQLException;
+	List<HouseDeal> selectCityRand() throws SQLException;
 }

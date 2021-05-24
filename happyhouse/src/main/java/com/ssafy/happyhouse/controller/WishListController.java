@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,6 +61,26 @@ public class WishListController {
 			System.out.println("register전");
 			wishService.wishListRegister(wishListDto);
 			System.out.println("register후");
+			resultMap.put("message", SUCCESS);
+			status = HttpStatus.ACCEPTED; 
+		}catch(Exception e) {
+			resultMap.put("message", FAIL);
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@ApiOperation(value = "제거", notes = "", response = Map.class)
+	@PostMapping("/delete")
+	public ResponseEntity<Map<String, Object>> delete(@RequestBody @ApiParam(value = "위시리스트추가", required = true)WishListDto wishListDto, Model model, HttpSession session) throws Exception {
+		System.out.println("위시리스트 제거 실행");
+		System.out.println("num: "+wishListDto.getNo());
+		HttpStatus status = HttpStatus.ACCEPTED;
+		Map<String, Object> resultMap = new HashMap<>();
+		try {
+			System.out.println("제거전");
+			wishService.wishListDelete(wishListDto.getNo());
+			System.out.println("제거후");
 			resultMap.put("message", SUCCESS);
 			status = HttpStatus.ACCEPTED; 
 		}catch(Exception e) {

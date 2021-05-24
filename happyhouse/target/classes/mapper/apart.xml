@@ -9,6 +9,14 @@
 		from baseaddress
 	</select>
 	
+	<select id="selectCityRand" resultType="HouseDeal">
+		SELECT hd.no, hd.dong, hd.AptName, hd.code, hd.dealAmount, hd.buildYear, hd.dealYear, hd.dealMonth, 
+				hd.dealDay, hd.area, hd.floor, hd.jibun, hd.type, hd.rentMoney, hi.lat, hi.lng, hi.img 
+		FROM housedeal hd 
+		INNER JOIN houseinfo hi ON hd.AptName = hi.AptName and hd.dong = hi.dong 
+		order by rand() limit 5
+	</select>
+	
 	<select id="selectGu"  parameterType="String" resultType="String">
 		select distinct gugun 
 		from baseaddress 
