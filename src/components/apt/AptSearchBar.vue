@@ -7,7 +7,7 @@
         <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
       </template>
       <b-form-select v-model="gu" size="sm-6" :options="guList" @change="getDongList({city, gu})" style="color: black;background-color:white"></b-form-select>
-      <b-form-select v-model="dong" size="sm-6" :options="dongList" @change="getAdd([city, gu, dong])" style="color: black;background-color:white"></b-form-select>
+      <b-form-select v-model="dong" size="sm-6" :options="dongList" @change="getAdd([city, gu, dong]);setTheme(gu);" style="color: black;background-color:white"></b-form-select>
       
     </b-col>
   </b-row>
@@ -39,6 +39,9 @@ export default {
       'getGuList',
       'getDongList',
       'getAdd',
+      'setHos',
+      'setClinic',
+      'setTheme',
     ]),
   },
   created() {
