@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="generateChart">의료 테마정보</button>
+        <button @click="generateChart">상권 테마정보</button>
         <div id='arc' ref="chart"></div>
     </div>
 </template>

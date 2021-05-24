@@ -25,6 +25,11 @@ export default new Vuex.Store({
         guList: [],
         dongList: [],
 
+        theme: {
+            "이름": 'theme',
+            "children": [],
+        },
+
         address: Object,
         markers: [],
 
@@ -59,6 +64,9 @@ export default new Vuex.Store({
         },
         wishapts(state) {
             return state.wishapts;
+        },
+        themeData(state) {
+            return state.theme;
         }
     },
     mutations: {
@@ -123,7 +131,28 @@ export default new Vuex.Store({
         },
         setBook(state, payload) {
             state.book = payload;
-        }
+        },
+        SET_HOS(state, payload) {
+            let hos = new Object;
+            hos.이름 = '국민안심병원';
+            hos.children = payload;
+
+            state.theme.children.push(hos);
+        },
+        SET_CLINIC(state, payload) {
+            let clinic = new Object;
+            clinic.이름 = '선별진료소';
+            clinic.children = payload;
+
+            state.theme.children.push(clinic);
+        },
+        SET_RES(state, payload) {
+            let res = new Object;
+            res.이름 = '호흡기전담클리닉';
+            res.children = payload;
+
+            state.theme.children.push(res);
+        },
     },
     actions: {
         getAptList({ commit, dispatch }, dongcode) {
@@ -277,7 +306,41 @@ export default new Vuex.Store({
             commit("logout");
             localStorage.removeItem("access-token");
             // axios.defaults.headers.common["auth-token"] = undefined;
-        }
+        },
+        setTheme({ commit, state }, gu) {
+            state.theme.children = [];
+
+            http
+                .get("/theme/hos", {
+                    params: {
+                        si: '서울',
+                        gu: gu,
+                    }
+                })
+                .then(({ data }) => {
+                    commit('SET_HOS',data);
+                });
+            http
+                .get("/theme/clinic", {
+                    params: {
+                        si: '서울',
+                        gu: gu,
+                    }
+                })
+                .then(({ data }) => {
+                    commit('SET_CLINIC',data);
+                });
+            http
+                .get("/theme/res", {
+                    params: {
+                        si: '서울',
+                        gu: gu,
+                    }
+                })
+                .then(({ data }) => {
+                    commit('SET_RES',data);
+                });
+        },
     },
     modules: {},
     plugins: [createPersistedState()],

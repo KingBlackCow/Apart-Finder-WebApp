@@ -2,10 +2,13 @@
   <b-row class="mt-4 mb-4">
 
     <!-- 아파트 주소 검색 -->
-    <b-col class="sm-3" align="left">
-      <b-form-select v-model="city" :options="cityList" @change="getGuList(city)" style="background-color: blue"></b-form-select>
-      <b-form-select v-model="gu" :options="guList" @change="getDongList({city, gu})" style="background-color: blue"></b-form-select>
-      <b-form-select v-model="dong" :options="dongList" @change="getAdd([city, gu, dong])" style="background-color: blue"></b-form-select>
+    <b-col class="sm-4" align="left">
+      <template #first>
+        <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+      </template>
+      <b-form-select v-model="city" :options="cityList" @change="getGuList(city)" style="color: black;background-color:white"></b-form-select>
+      <b-form-select v-model="gu" size="sm-6" :options="guList" @change="getDongList({city, gu})" style="color: black;background-color:white"></b-form-select>
+      <b-form-select v-model="dong" size="sm-6" :options="dongList" @change="getAdd([city, gu, dong]);setTheme(gu);" style="color: black;background-color:white"></b-form-select>
     </b-col>
   </b-row>
 </template>
@@ -36,6 +39,9 @@ export default {
       'getGuList',
       'getDongList',
       'getAdd',
+      'setHos',
+      'setClinic',
+      'setTheme',
     ]),
   },
   created() {
