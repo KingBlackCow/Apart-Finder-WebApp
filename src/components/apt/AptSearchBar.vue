@@ -8,7 +8,7 @@
       </template>
       <b-form-select v-model="city" :options="cityList" @change="getGuList(city)" style="color: black;background-color:white"></b-form-select>
       <b-form-select v-model="gu" size="sm-6" :options="guList" @change="getDongList({city, gu})" style="color: black;background-color:white"></b-form-select>
-      <b-form-select v-model="dong" size="sm-6" :options="dongList" @change="getAdd([city, gu, dong]);setTheme(gu);" style="color: black;background-color:white"></b-form-select>
+      <b-form-select v-model="dong" size="sm-6" :options="dongList" @change="getAdd([city, gu, dong]);setTheme(gu);setComm();" style="color: black;background-color:white"></b-form-select>
     </b-col>
   </b-row>
 </template>
@@ -42,6 +42,7 @@ export default {
       'setHos',
       'setClinic',
       'setTheme',
+      'setComm',
     ]),
   },
   created() {

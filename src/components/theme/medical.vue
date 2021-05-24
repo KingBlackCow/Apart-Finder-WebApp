@@ -7,23 +7,12 @@
 
 <script>
 import * as d3 from "d3";
-// import mdata from "@/data/medical.json";
 import { mapGetters} from 'vuex';
 
 export default {
     name: 'MedicalChart',
     data() {
         return {
-            gdp: [
-                {country: "USA", value: 20.5 },
-                {country: "China", value: 13.4 },
-                {country: "Germany", value: 4.0 },
-                {country: "Japan", value: 4.9 },
-                {country: "France", value: 2.8 }
-            ],
-            childData: [
-                10, 20, 30, 40, 50
-            ]
         };
     },
     mounted() {

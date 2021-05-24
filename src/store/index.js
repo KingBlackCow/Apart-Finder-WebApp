@@ -7,6 +7,7 @@ import router from '../router';
 import jwt_decode from "jwt-decode";
 import { findById } from "@/api/user.js";
 import Geocoder from "@pderas/vue2-geocoder";
+import { json } from 'd3-fetch';
 
 Vue.use(Vuex);
 Vue.use(Geocoder, {
@@ -27,6 +28,11 @@ export default new Vuex.Store({
 
         theme: {
             "이름": 'theme',
+            "children": [],
+        },
+
+        comm: {
+            "name": 'comm',
             "children": [],
         },
 
@@ -67,6 +73,9 @@ export default new Vuex.Store({
         },
         themeData(state) {
             return state.theme;
+        },
+        commData(state) {
+            return state.comm;
         }
     },
     mutations: {
@@ -152,6 +161,25 @@ export default new Vuex.Store({
             res.children = payload;
 
             state.theme.children.push(res);
+        },
+        SET_COMM_L(state, payload) {
+            state.comm.children = payload;
+            state.comm.children.forEach(element => {
+                element.name = element.indsLclsNm;
+            });
+        },
+        SET_COMM_M(state, payload) {
+            payload.element.children = payload.res;
+            payload.element.children.forEach(element => {
+                element.name = element.indsMclsNm;
+            });
+        },
+        SET_COMM_S(state, payload) {
+            payload.element.children = payload.res;
+            payload.element.children.forEach(element => {
+                element.name = element.indsSclsNm;
+                element.value = element.statCnt;
+            });
         },
     },
     actions: {
@@ -340,6 +368,92 @@ export default new Vuex.Store({
                 .then(({ data }) => {
                     commit('SET_RES',data);
                 });
+        },
+        setComm({ commit, state, dispatch }) {
+            state.comm.children = [];
+
+            const SERVICE_KEY = 'kox33uURucSpZ6qsW8bzyifC%2ByXykFsPCbqAMn7Dg2r5o8XO2QS9%2F3QpRRu4Vm39fNlH4B3FbcS7Z1wawBjHtg%3D%3D';
+
+            const SERVICE_URL =
+                'http://apis.data.go.kr/B553077/api/open/sdsc/storeStatsUpjongInAdmi';
+
+            const params = {
+                key: state.address.dongcode,
+                divId: 'signguCd',
+                serviceKey: decodeURIComponent(SERVICE_KEY),
+                type: 'json',
+            };
+
+            // npm install --save axios
+            axios
+                .get(SERVICE_URL, {
+                    params,
+                })
+                .then((response) => {
+                    commit('SET_COMM_L', response.data.body.items);
+                    dispatch('setCommM', response.data.body.items);
+                })
+                .catch((error) => {
+                    console.dir(error);
+                });
+        },
+        setCommM({ commit, state, dispatch }, data) {
+            const SERVICE_KEY = 'kox33uURucSpZ6qsW8bzyifC%2ByXykFsPCbqAMn7Dg2r5o8XO2QS9%2F3QpRRu4Vm39fNlH4B3FbcS7Z1wawBjHtg%3D%3D';
+
+            const SERVICE_URL =
+                'http://apis.data.go.kr/B553077/api/open/sdsc/storeStatsUpjongInAdmi';
+            
+            data.forEach(element => {
+                const params = {
+                    key: state.address.dongcode,
+                    divId: 'signguCd',
+                    serviceKey: decodeURIComponent(SERVICE_KEY),
+                    type: 'json',
+                };
+                params.indsLclsCd = element.indsLclsCd;
+
+                axios
+                    .get(SERVICE_URL, {
+                        params,
+                    })
+                    .then((response) => {
+                        let res = response.data.body.items;
+                        commit('SET_COMM_M', { element, res});
+
+                        dispatch('setCommS', { element, res});
+                    })
+                    .catch((error) => {
+                        console.dir(error);
+                    });
+            });
+        },
+        setCommS({ commit, state, dispatch }, data) {
+            const SERVICE_KEY = 'kox33uURucSpZ6qsW8bzyifC%2ByXykFsPCbqAMn7Dg2r5o8XO2QS9%2F3QpRRu4Vm39fNlH4B3FbcS7Z1wawBjHtg%3D%3D';
+
+            const SERVICE_URL =
+                'http://apis.data.go.kr/B553077/api/open/sdsc/storeStatsUpjongInAdmi';
+            
+            data.res.forEach(element => {
+                const params = {
+                    key: state.address.dongcode,
+                    divId: 'signguCd',
+                    serviceKey: decodeURIComponent(SERVICE_KEY),
+                    type: 'json',
+                };
+                params.indsMclsCd = element.indsMclsCd;
+
+                axios
+                    .get(SERVICE_URL, {
+                        params,
+                    })
+                    .then((response) => {
+                        let res = response.data.body.items;
+                        commit('SET_COMM_S', { element, res});
+                    })
+                    .catch((error) => {
+                        console.dir(error);
+                    });
+            });
         },
     },
     modules: {},
