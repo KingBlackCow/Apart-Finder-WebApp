@@ -13,6 +13,7 @@
           <router-view></router-view>
         </transition>
       </v-container>
+      
     </v-content>
     <TheFooter/>
   </v-app>
@@ -21,7 +22,6 @@
 <script>
 import TheHeader from "./components/TheHeader";
 import TheFooter from "./components/TheFooter";
-
 
 export default {
   name: "App",
@@ -36,7 +36,7 @@ export default {
   components: {
     TheHeader,
     TheFooter,
- 
+    
   },
   data() {
     return { 
@@ -48,7 +48,6 @@ export default {
     updateTheme(updatedTheme) {
       this.goDark = !updatedTheme;
     },
-   
   }
 };
 </script>

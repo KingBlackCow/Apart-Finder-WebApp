@@ -17,6 +17,18 @@
     ></vue-typer>
     <br>
     <br>
+    
+    <div style="width:70%;margin:20px auto;height:400px">
+      
+      <slider ref="slider" :options="options" @slide='slide' @tap='onTap' @init='onInit'>
+        <slideritem v-for="(item,index) in someList" :key="index" :style="item.style">{{item.html}}</slideritem>
+        <div slot="loading">loading...</div>
+      </slider>
+    </div>
+    <br>
+    <br>
+    
+    
     <VueCompareImage
       class="hidden-md-and-down"
       hover
@@ -39,8 +51,6 @@
     />
 
     <br>
-
-    
     <br>
     <v-flex xs12 sm6 md4 lg4 xl4>
       <v-card flat color="transparent" max-width="500">
@@ -92,7 +102,7 @@
         </v-card-actions> -->
       </v-card>
     </v-flex>
-
+  
     <v-layout row justify-center align-center wrap class="mt-6 pt-2">
       <v-flex v-for="portfolio in portfolios" :key="portfolio.src" xs12 sm12 md4 lg4 xl4>
         <v-card
@@ -119,29 +129,65 @@
 <script>
 import { VueTyper } from "vue-typer";
 import VueCompareImage from "vue-compare-image";
-
+import VueDisplacementSlideshow from "vue-displacement-slideshow";
+import { slider, slideritem } from 'vue-concise-slider'
 export default {
   metaInfo: {
     title: "Home",
-    titleTemplate: "%s ← Eldin's Space",
+    titleTemplate: "ApartFinder",
     meta: [
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "description", content: "Eldin Zaimovic's Portfolio" },
+      
       { charset: "utf-8" },
-      { property: "og:title", content: "Eldin' Space" },
-      { property: "og:site_name", content: "Eldin' Space" },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://eldin.space" },
-      {
-        property: "og:image",
-        content: "https://i.imgur.com/Dcz2PGx.jpg"
-      },
-      { property: "og:description", content: "Eldin Zaimovic's Portfolio" }
+      { property: "og:title"},
+      { property: "og:site_name"},
+      { property: "og:type" },
+      { property: "og:description" }
     ]
   },
   components: {
     "vue-typer": VueTyper,
-    VueCompareImage
+    VueCompareImage,
+    VueDisplacementSlideshow,
+    slider,
+    slideritem
+  }, 
+  
+  mounted () {
+      let that = this
+      setTimeout(function () {
+        that.someList = [
+          {
+            html: '당신이원하는집',
+            style: {
+              'background': 'green'
+            }
+          },
+          {
+            html: 'slide2',
+            style: {
+              'background': 'red'
+            }
+          },
+          {
+            html: 'slide3',
+            style: {
+              'background': 'blue'
+            }
+          }
+        ]
+      }, 2000)
+    },
+  methods: {
+      // Listener event
+      slide (data) {
+        console.log(data)
+      },
+      onTap (data) {
+        console.log(data)
+      },
+      onInit (data) {
+        console.log(data)
+      }
   },
   data() {
     return {
@@ -189,7 +235,35 @@ export default {
           src: "https://i.imgur.com/g74mGuU.png",
           title: "Graphic"
         }
-      ]
+      ],
+      someList:[
+        {
+          src: "https://i.imgur.com/GvTt5GG.png",
+          title: "Web"
+        },
+
+        {
+          src: "https://i.imgur.com/wXLtLKy.png",
+          title: "Video"
+        },
+        {
+          src: "https://i.imgur.com/g74mGuU.png",
+          title: "Graphic"
+        }
+      ],
+        //Sliding configuration [obj]
+      options: {
+        currentPage: 0,
+        thresholdDistance:500,
+        thresholdTime:100,
+        autoplay:3000,
+        loop:true,
+        direction:'vertical',
+        loopedSlides:1,
+        slidesToScroll:1,
+        timingFunction: 'ease',
+        speed: 300
+      }
     
     };
   }
@@ -226,6 +300,10 @@ export default {
 .vue-typer .custom.caret.selecting {
   display: inline-block;
   background-color: #e91e63;
+}
+.vue-displacement {
+  width: 200px;
+  height: 100%;
 }
 </style>
 

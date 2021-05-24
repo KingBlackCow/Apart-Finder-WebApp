@@ -10,6 +10,8 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import Geocoder from "@pderas/vue2-geocoder";
 import axios from 'axios'
 // Install BootstrapVue
+
+
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 

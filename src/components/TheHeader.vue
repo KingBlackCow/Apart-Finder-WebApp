@@ -70,6 +70,7 @@
         <v-btn flat to="/Apt" active-class="green--text headline">Apt</v-btn>
         <v-btn flat to="/services" active-class="green--text headline">Services</v-btn>
         <v-btn flat to="/portfolio" active-class="green--text headline">Portfolio</v-btn>
+        <v-btn flat to="/thema" active-class="green--text headline">Circumstance</v-btn>
         <v-btn flat to="/wishlist" active-class="green--text headline">WishList</v-btn>
         <v-btn flat to="/book" active-class="green--text headline">Board</v-btn>
         <v-btn flat to="/mypage" active-class="green--text headline">Mypage</v-btn>
