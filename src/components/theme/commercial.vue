@@ -7,23 +7,12 @@
 
 <script>
 import * as d3 from "d3";
-// import mdata from "@/data/medical.json";
 import { mapGetters} from 'vuex';
 
 export default {
-    name: 'MedicalChart',
+    name: 'CommChart',
     data() {
         return {
-            gdp: [
-                {country: "USA", value: 20.5 },
-                {country: "China", value: 13.4 },
-                {country: "Germany", value: 4.0 },
-                {country: "Japan", value: 4.9 },
-                {country: "France", value: 2.8 }
-            ],
-            childData: [
-                10, 20, 30, 40, 50
-            ]
         };
     },
     mounted() {
@@ -32,7 +21,7 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'themeData',
+            'commData',
         ]),
     },
     methods: {
@@ -45,7 +34,7 @@ export default {
                     (d3.hierarchy(data)
                     .sum(d => d.value)
                     .sort((a, b) => b.value - a.value));
-            const data = this.themeData;
+            const data = this.commData;
             const width = 932;
             const height = width;
             const color = d3.scaleLinear()
@@ -87,7 +76,7 @@ export default {
                 .join("text")
                 .style("fill-opacity", d => d.parent === root ? 1 : 0)
                 .style("display", d => d.parent === root ? "inline" : "none")
-                .text(d => d.data.이름);
+                .text(d => d.data.name);
 
             zoomTo([root.x, root.y, root.r * 2]);
 
