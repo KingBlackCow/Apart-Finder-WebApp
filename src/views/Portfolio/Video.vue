@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { PlyrVideo } from "vue-plyr";
+
 
 export default {
   metaInfo: {

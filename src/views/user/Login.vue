@@ -5,16 +5,16 @@
         <b-col cols="4"></b-col>
         <b-col cols="4">
           <b-card
-            class="text-center mt-3"
+            class="text-center mt-6"
             header-html="<h3>로그인</h3>"
-            style="max-width: 40rem;"
+            style="max-width: 80rem;"
             align="left"
           >
             <b-form class="text-left">
               <b-alert show variant="danger" v-if="isLoginError"
                 >아이디 또는 비밀번호를 확인하세요.</b-alert
               >
-              <b-form-group label="아이디:" label-for="userid">
+              <b-form-group label="아이디" label-for="userid">
                 <b-form-input
                   id="userid"
                   v-model="user.userid"
@@ -23,7 +23,7 @@
                   @keyup.enter="confirm"
                 ></b-form-input>
               </b-form-group>
-              <b-form-group label="비밀번호:" label-for="userpwd">
+              <b-form-group label="비밀번호" label-for="userpwd">
                 <b-form-input
                   type="password"
                   id="userpwd"
@@ -54,10 +54,14 @@
         <b-col cols="4"></b-col>
         <b-col cols="4">
           <div id="app">
-            <a :href="kakaoLoginLink" alt="kakao login">
-              <img alt="kakao logo" src="@/assets/kakao_login.png" />
-            </a>
-          </div>
+        <KakaoLogin
+          api-key="c66a122b4c43fae154eaadd873566bb4"
+          image="kakao_login_btn_medium"
+          :on-success=onSuccess
+          :on-failure=onFailure
+        
+        />
+  </div>
         </b-col>
         <b-col cols="4"></b-col>
       </b-row>
@@ -68,11 +72,14 @@
 <script>
 import { login } from "@/api/user.js";
 import Navi from "@/components/common/Navi";
+import KakaoLogin from 'vue-kakao-login'
+import { mapState } from "vuex";
 
 export default {
   name: "login",
   components: {
-    Navi
+    Navi,
+    KakaoLogin
   },
   data() {
     return {
@@ -109,12 +116,23 @@ export default {
           alert("에러입니다.");
         }
       );
-    }
+      
+    },
+    onSuccess(){
+      console.log("success");
+      this.$store.commit("setUserInfo", true);
+      this.$router.push("/");
+    },
+    onFailure(){
+      console.log("failure");
+      this.$router.push("/");
+    },
   },
   computed: {
     kakaoLoginLink() {
-      return `https://kauth.kakao.com/oauth/authorize?client_id=${this.client_id}&redirect_uri=${this.redirect_uri}&response_type=code`;
+      
     },
+    ...mapState(["userInfo","isLogin"]),
   },
 
 

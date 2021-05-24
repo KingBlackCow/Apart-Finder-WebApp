@@ -1,5 +1,22 @@
 <template>
   <v-layout column justify-center align-center class="mt-4 pt-2">
+
+    <vue-typer class="headline" :repeat="0" text="Apart Selling Finder"></vue-typer>
+    <vue-typer
+      :text="text1"
+      :repeat="Infinity"
+      :shuffle="false"
+      initial-action="erasing"
+      :pre-type-delay="70"
+      :type-delay="70"
+      :pre-erase-delay="1980"
+      :erase-delay="150"
+      erase-style="select-back"
+      :erase-on-complete="false"
+      caret-animation="smooth"
+    ></vue-typer>
+    <br>
+    <br>
     <VueCompareImage
       class="hidden-md-and-down"
       hover
@@ -23,20 +40,7 @@
 
     <br>
 
-    <vue-typer class="headline" :repeat="0" text="Apart Selling Finder"></vue-typer>
-    <vue-typer
-      :text="text1"
-      :repeat="Infinity"
-      :shuffle="false"
-      initial-action="erasing"
-      :pre-type-delay="70"
-      :type-delay="70"
-      :pre-erase-delay="1980"
-      :erase-delay="150"
-      erase-style="select-back"
-      :erase-on-complete="false"
-      caret-animation="smooth"
-    ></vue-typer>
+    
     <br>
     <v-flex xs12 sm6 md4 lg4 xl4>
       <v-card flat color="transparent" max-width="500">
@@ -207,7 +211,7 @@ export default {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 .vue-typer .custom.char.typed {
-  color: green;
+  color: white;
 }
 .vue-typer .custom.char.selected {
   color: #e91e63;

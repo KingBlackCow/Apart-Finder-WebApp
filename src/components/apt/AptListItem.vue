@@ -52,9 +52,13 @@ export default {
     }
     
   },
+  created(){
+    this.selectedImage = this.randomItem(this.images)
+  },
   updated() {
     this.selectedImage = this.randomItem(this.images)
   }
+  
 };
 </script>
 
