@@ -20,6 +20,34 @@ export default {
     floor: String,
     price: String,
   },
+  data() {
+    return {
+      aptWish: {
+        no: "",
+      },
+    }
+  },
+  methods: {
+  delete1() {
+      const instance = createInstance();
+      this.aptWish.no=this.no;
+      
+      
+      instance.post("/wish/delete", JSON.stringify(this.aptWish))
+      .then(
+        (response) => {
+          if (response.data.message === "success") {
+            alert("삭제 완료");
+            this.$router.push("/");
+          } else {
+            alert("삭제 실패");
+          }
+        }
+      )
+      .catch();
+      //this.$router.push('/addList');
+    },
+  }
   
 };
 </script>

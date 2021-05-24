@@ -1,20 +1,21 @@
 <template>
   <v-container grid-list-xl>
     <h2 class="pl-4">
-      <span>Web</span>
-      <span class="green--text">Portfolio</span>
+      <span>현재 </span>
+      <span class="green--text">인기순위</span>
     </h2>
     <v-layout row justify-center align-center wrap class="mt-4 pt-2">
       <v-dialog
         v-model="project.dialog"
         lazy
         max-width="1000"
-        v-for="project in projects"
-        :key="project.title"
+        v-for="(project,index) in projects"
+        :key="index"
       >
         <template v-slot:activator="{ on }">
           <v-flex xs12 sm6 md4 lg4 xl4 v-on="on">
             <v-card hover flat color="transparent">
+              <h1>현재 {{index+1}}위</h1>
               <v-img
                 :src="project.poster"
                 :alt="project.title"
@@ -28,20 +29,16 @@
           <v-img :src="project.poster"></v-img>
           <v-card-text>
             <h3 class="headline mb-0">
-              <span>Technology</span>
+              <span>{{project.title}}</span>
             </h3>
-            <v-chip color="green" text-color="white">{{project.tech.tech1}}</v-chip>
-            <v-chip color="green" text-color="white">{{project.tech.tech2}}</v-chip>
-            <v-chip color="green" text-color="white">{{project.tech.tech3}}</v-chip>
-            <v-chip color="green" text-color="white">{{project.tech.tech4}}</v-chip>
+            <v-chip color="green" text-color="white">번지수: {{project.tech.tech1}}</v-chip>
+            <v-chip color="green" text-color="white">법호동: {{project.tech.tech2}}</v-chip>
+            <v-chip color="green" text-color="white">층수: {{project.tech.tech3}}</v-chip>
+            <v-chip color="green" text-color="white">가격: {{project.tech.tech4}}</v-chip>
           </v-card-text>
           <v-card-actions>
-            <v-btn flat large dark color="green" :href="project.git" target="_blank">
-              <v-icon left>fab fa-github</v-icon>GitHub
-            </v-btn>
-            <v-btn large flat dark color="green" :href="project.demo" target="_blank">
-              <v-icon left>fas fa-desktop</v-icon>Demo
-            </v-btn>
+            <b-button variant="primary" class="mr-1" @click.prevent="addList(index)"
+              >찜목록추가</b-button>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -50,10 +47,12 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+import { createInstance } from "@/api/index.js";
 export default {
   metaInfo: {
-    title: "Web Portfolio",
-    titleTemplate: "%s ← Eldin's Space",
+    title: "Popular",
+    titleTemplate: "%s ← Popular",
     meta: [
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
@@ -87,10 +86,10 @@ export default {
           git: "https://github.com/EldinZaimovic/euphoric-voyage",
           demo: "https://www.euphoric-voyage.com/",
           tech: {
-            tech1: "Gatsby",
-            tech2: "JavaScript",
-            tech3: "SCSS",
-            tech4: "Markdown"
+            tech1: "",
+            tech2: "",
+            tech3: "",
+            tech4: ""
           },
           poster: "https://i.postimg.cc/sXXDxnsz/apt1.jpg"
         },
@@ -146,9 +145,80 @@ export default {
           },
           poster: "https://i.postimg.cc/44HH1dRg/apt5.jpg"
         },
-      ]
+      ],
+      aptWish: {
+        no: "",
+        name:"",
+        dong: "",
+        floor:"",
+        price:"",
+      },
     };
-  }
+  },
+  mounted() {
+    this.getCityListRand();
+    console.log(this.cityList);
+    this.projects[0].title = this.cityList[0].text.aptNAme;
+    this.projects[0].tech.tech1 = this.cityList[0].text.code;
+    this.projects[0].tech.tech2 = this.cityList[0].text.dong;
+    this.projects[0].tech.tech3 = this.cityList[0].text.floor;
+    this.projects[0].tech.tech4 = this.cityList[0].text.dealAmount;
+
+    this.projects[1].title = this.cityList[1].text.aptNAme;
+    this.projects[1].tech.tech1 = this.cityList[1].text.code;
+    this.projects[1].tech.tech2 = this.cityList[1].text.dong;
+    this.projects[1].tech.tech3 = this.cityList[1].text.floor;
+    this.projects[1].tech.tech4 = this.cityList[1].text.dealAmount;
+
+    this.projects[2].title = this.cityList[2].text.aptNAme;
+    this.projects[2].tech.tech1 = this.cityList[2].text.code;
+    this.projects[2].tech.tech2 = this.cityList[2].text.dong;
+    this.projects[2].tech.tech3 = this.cityList[2].text.floor;
+    this.projects[2].tech.tech4 = this.cityList[2].text.dealAmount;
+
+    this.projects[3].title = this.cityList[3].text.aptNAme;
+    this.projects[3].tech.tech1 = this.cityList[3].text.code;
+    this.projects[3].tech.tech2 = this.cityList[3].text.dong;
+    this.projects[3].tech.tech3 = this.cityList[3].text.floor;
+    this.projects[3].tech.tech4 = this.cityList[3].text.dealAmount;
+
+    this.projects[4].title = this.cityList[4].text.aptNAme;
+    this.projects[4].tech.tech1 = this.cityList[4].text.code;
+    this.projects[4].tech.tech2 = this.cityList[4].text.dong;
+    this.projects[4].tech.tech3 = this.cityList[4].text.floor;
+    this.projects[4].tech.tech4 = this.cityList[4].text.dealAmount;
+
+  },
+  computed: {
+    ...mapGetters(["cityList"])
+  },
+  methods: {
+    ...mapActions([
+      'getCityListRand',
+    ]),
+    addList(i) {
+      const instance = createInstance();
+      this.aptWish.no=this.projects[i].tech.tech1;
+      this.aptWish.name=this.projects[i].title;
+      this.aptWish.dong=this.projects[i].tech.tech2;
+      this.aptWish.floor=this.projects[i].tech.tech3;
+      this.aptWish.price=this.projects[i].tech.tech4;
+      
+      instance.post("/wish/add", JSON.stringify(this.aptWish))
+      .then(
+        (response) => {
+          if (response.data.message === "success") {
+            alert("찜목록 추가 완료");
+            
+          } else {
+            alert("찜목록 추가 실패");
+          }
+        }
+      )
+      .catch();
+    },
+  },
+  
 };
 </script>
 

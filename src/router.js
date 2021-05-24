@@ -9,6 +9,7 @@ import Mypage from "@/views/user/MyPage.vue";
 import Modify from "@/views/user/Modify.vue";
 import Book from "@/views/Book.vue";
 import Theme from "@/views/Theme.vue";
+import Popular from "@/views/Popular.vue";
 import Kakao from "@/views/user/LoginKakao.vue";
 //import Apt from '@/views/Apt.vue';
 
@@ -80,11 +81,9 @@ export default new Router({
         import( /* webpackChunkName: "about" */ "./views/Portfolio/Graphic.vue")
     },
     {
-      path: "/portfolio/web",
-      name: "webPortfolio",
-      component: () =>
-          import( /* webpackChunkName: "about" */ "./views/Portfolio/Web.vue")
-      
+      path: "/popular",
+      name: "popular",
+      component: Popular
     },
     {
       path: "*",
@@ -163,7 +162,8 @@ export default new Router({
           name: "kakaologin",
           component: Kakao
         }
-      ],
+      
+],
       redirect: () => {
         return "/book";
       }
