@@ -23,6 +23,7 @@ export default {
     onSuccess(){
       console.log("success");
       this.$store.commit("setUserInfo", true);
+      alert("로그인 되었습니다.");
       this.$router.push("/");
     },
     onFailure(){

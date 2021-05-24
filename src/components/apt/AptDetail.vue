@@ -10,27 +10,27 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="secondary">일련번호 : {{ apt.일련번호 }}</b-alert>
+        <b-alert show variant="">일련번호 : {{ apt.일련번호 }}</b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="primary">아파트 이름 : {{ apt.아파트 }}</b-alert>
+        <b-alert show variant="">아파트 이름 : {{ apt.아파트 }}</b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="info">법정동 : {{ apt.법정동 }}</b-alert>
+        <b-alert show variant="">법정동 : {{ apt.법정동 }}</b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="warning">층수 : {{ apt.층 }}층</b-alert>
+        <b-alert show variant="">층수 : {{ apt.층 }}층</b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="danger"
+        <b-alert show variant=""
           >거래금액 : {{ (apt.거래금액.replace(',', '') * 10000) | price }}원</b-alert
         >
       </b-col>

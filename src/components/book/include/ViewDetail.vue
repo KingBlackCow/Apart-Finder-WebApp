@@ -1,5 +1,7 @@
 <template>
   <div class="regist">
+    <br>
+    <br>
     <h1 class="underline">게시판</h1>
     <div class="regist_form">
       

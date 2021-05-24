@@ -1,5 +1,7 @@
 <template>
   <div>
+    <br>
+    <br>
     <h1 class="underline">게시글</h1>
     <div style="text-align: right">
       <button @click="movePage">글 등록</button>

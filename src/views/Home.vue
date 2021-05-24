@@ -18,17 +18,6 @@
     <br>
     <br>
     
-    <div style="width:70%;margin:20px auto;height:400px">
-      
-      <slider ref="slider" :options="options" @slide='slide' @tap='onTap' @init='onInit'>
-        <slideritem v-for="(item,index) in someList" :key="index" :style="item.style">{{item.html}}</slideritem>
-        <div slot="loading">loading...</div>
-      </slider>
-    </div>
-    <br>
-    <br>
-    
-    
     <VueCompareImage
       class="hidden-md-and-down"
       hover
@@ -85,21 +74,6 @@
           </v-btn>
         </v-card-actions>
 
-        <!-- <v-card-actions class="hidden-md-and-up justify-center">
-          <v-btn
-            v-for="icon in icons"
-            :key="icon.icon"
-            small
-            fab
-            dark
-            outline
-            color="green"
-            :href="icon.href"
-            target="_blank"
-          >
-            <v-icon dark>{{icon.icon}}</v-icon>
-          </v-btn>
-        </v-card-actions> -->
       </v-card>
     </v-flex>
   
@@ -152,43 +126,6 @@ export default {
     slideritem
   }, 
   
-  mounted () {
-      let that = this
-      setTimeout(function () {
-        that.someList = [
-          {
-            html: '당신이원하는집',
-            style: {
-              'background': 'green'
-            }
-          },
-          {
-            html: 'slide2',
-            style: {
-              'background': 'red'
-            }
-          },
-          {
-            html: 'slide3',
-            style: {
-              'background': 'blue'
-            }
-          }
-        ]
-      }, 2000)
-    },
-  methods: {
-      // Listener event
-      slide (data) {
-        console.log(data)
-      },
-      onTap (data) {
-        console.log(data)
-      },
-      onInit (data) {
-        console.log(data)
-      }
-  },
   data() {
     return {
       icons: [

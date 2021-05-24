@@ -19,7 +19,6 @@
                 :src="project.poster"
                 :alt="project.title"
                 height="230"
-                lazy-src="https://cdn.dribbble.com/users/503653/screenshots/3143656/fluid-loader.gif"
               ></v-img>
               <v-card-title primary-title class="justify-center">{{project.title}}</v-card-title>
             </v-card>
@@ -82,7 +81,7 @@ export default {
     return {
       dialog: false,
       projects: [
-         {
+        {
           dialog: false,
           title: "Euphoric Voyage",
           git: "https://github.com/EldinZaimovic/euphoric-voyage",
@@ -93,7 +92,7 @@ export default {
             tech3: "SCSS",
             tech4: "Markdown"
           },
-          poster: "https://i.imgur.com/9Ww2bvm.png"
+          poster: "https://i.postimg.cc/sXXDxnsz/apt1.jpg"
         },
         {
           dialog: false,
@@ -106,7 +105,7 @@ export default {
             tech3: "HTML",
             tech4: "JavaScript"
           },
-          poster: "https://i.imgur.com/sGUofpv.png"
+          poster: "https://i.postimg.cc/26VbMjqn/apt2.jpg"
         },
         {
           dialog: false,
@@ -119,7 +118,7 @@ export default {
             tech3: "HTML",
             tech4: "JavaScript"
           },
-          poster: "https://i.imgur.com/nVqtTAf.png"
+          poster: "https://i.postimg.cc/Px9pjGZ9/apt3.jpg"
         },
         {
           dialog: false,
@@ -132,20 +131,7 @@ export default {
             tech3: "HTML",
             tech4: "JavaScript"
           },
-          poster: "https://i.imgur.com/GOIIL06.png"
-        },
-        {
-          dialog: false,
-          title: "Snowball Coding Challenge",
-          git: "https://github.com/EldinZaimovic/SnowBall-Project",
-          demo: "https://snowball-test.netlify.com/",
-          tech: {
-            tech1: "VUE",
-            tech2: "GraphQL",
-            tech3: "Axios",
-            tech4: "JavaScript"
-          },
-          poster: "https://i.imgur.com/rXHBs36.png"
+          poster: "https://i.postimg.cc/9094XxYM/apt4.jpg"
         },
         {
           dialog: false,
@@ -158,47 +144,8 @@ export default {
             tech3: "HTML",
             tech4: "JavaScript"
           },
-          poster: "https://i.imgur.com/kCN1CFH.png"
+          poster: "https://i.postimg.cc/44HH1dRg/apt5.jpg"
         },
-        {
-          dialog: false,
-          title: "Stock Trader",
-          git: "https://github.com/EldinZaimovic/Stock-Trader",
-          demo: "https://stock-trader-eldin.netlify.com/",
-          tech: {
-            tech1: "VUE",
-            tech2: "Vuex",
-            tech3: "Firebase",
-            tech4: "JavaScript"
-          },
-          poster: "https://i.imgur.com/wK5dqP7.png"
-        },
-        {
-          dialog: false,
-          title: "Riders Share Newsleter",
-          git: "",
-          demo: "https://imgur.com/zTMJhGk",
-          tech: {
-            tech1: "HTML",
-            tech2: "CSS",
-            tech3: "MailChimp",
-            tech4: "JavaScript"
-          },
-          poster: "https://i.imgur.com/zTMJhGk.jpg"
-        },
-        {
-          dialog: false,
-          title: "My Old Web Portfolio",
-          git: "https://github.com/EldinZaimovic/EldinZaimovic.github.io",
-          demo: "https://eldinzaimovic.github.io/index.html",
-          tech: {
-            tech1: "HTML",
-            tech2: "CSS",
-            tech3: "JavaScript",
-            tech4: "jQuery"
-          },
-          poster: "https://i.imgur.com/AW7CXD5.jpg"
-        }
       ]
     };
   }

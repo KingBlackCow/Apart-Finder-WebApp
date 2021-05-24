@@ -1,21 +1,24 @@
 <template>
+  
   <div class="regist">
-    <h1 class="underline">SSAFY 도서 
-      <template v-if="type == 'create'">등록</template>
+    <br>
+    <br>
+    <h1 class="underline">게시판 
+      <template v-if="type == 'create'">글등록</template>
       <template v-else >수정</template>
     </h1>
     <div class="regist_form">
-      <label for="isbn">도서번호</label>
-      <input v-if="type == 'create'" type="text" id="isbn" name="isbn" v-model="isbn" ref="isbn" />
-      <input v-else type="text" id="isbn" name="isbn" v-model="isbn" ref="isbn" readonly /><br />
-      <label for="title">도서명</label>
+      <!-- <label for="isbn">글번호</label>
+      <input v-if="type == 'create'" type="text" id="isbn" name="isbn" v-model="isbn" ref="isbn" /> -->
+      <!-- <input v-else type="text" id="isbn" name="isbn" v-model="isbn" ref="isbn" readonly /><br /> -->
+      <label for="title">제목</label>
       <input type="text" id="title" name="title" v-model="title" ref="title" /><br />
-      <label for="author">저자</label>
+      <label for="author">글쓴이</label>
       <input type="text" id="author" name="author" v-model="author" ref="author" /><br />
-      <label for="content">설명</label><br />
+      <label for="content">내용</label><br />
       <textarea id="content" name="content" v-model="content" ref="content" cols="35" rows="5"></textarea><br />
-      <button v-if="type == 'create'" @click="checkValue">등록</button>
-      <button v-else @click="checkValue">수정</button>
+      <button v-if="type == 'create'" @click="checkValue" style="padding-right:10px">등록</button>
+      <button v-else @click="checkValue" style="padding-d">수정</button>
       <button @click="moveList">목록</button>
     </div>
   </div>
@@ -58,6 +61,7 @@ export default {
       // isbn, 제목, 저자, 가격, 설명이 없을 경우 각 항목에 맞는 메세지를 출력
       let err = true;
       let msg = "";
+      this.isbn="123";
       !this.isbn && ((msg = "isbn 입력해주세요"), (err = false), this.$refs.isbn.focus());
       err && !this.title && ((msg = "제목 입력해주세요"), (err = false), this.$refs.title.focus());
       err && !this.author && ((msg = "저자 입력해주세요"), (err = false), this.$refs.author.focus());
