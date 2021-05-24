@@ -210,6 +210,17 @@ export default new Vuex.Store({
         selectAptImg({ commit }, selectedImage) {
             commit('SELECT_IMG', selectedImage);
         },
+        getCityListRand({ commit }) {
+            http
+                .get("/apart/cityrand")
+                .then((data) => {
+                    console.log(data.data);
+                    commit("SET_CITY", data.data);
+                })
+                .catch(() => {
+                    alert("에러발생!");
+                });
+        },
         getCityList({ commit }) {
             http
                 .get("/apart/city")

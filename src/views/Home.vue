@@ -80,7 +80,7 @@
     <v-layout row justify-center align-center wrap class="mt-6 pt-2">
       <v-flex v-for="portfolio in portfolios" :key="portfolio.src" xs12 sm12 md4 lg4 xl4>
         <v-card
-          :to="'/portfolio/'+(portfolio.title).toLowerCase()"
+          :to="'/'+(portfolio.title).toLowerCase()"
           hover
           flat
           color="transparent"
@@ -161,7 +161,7 @@ export default {
       portfolios: [
         {
           src: "https://i.imgur.com/GvTt5GG.png",
-          title: "Web"
+          title: "Popular"
         },
 
         {
