@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- 이거 자동완성 이니 주의 -->
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.ThemeMapper">
+
+	<select id="국민안심병원" resultType="ThemeDto">
+		select 시도, 시군구, 이름, 주소, 전화번호, value 
+		from 국민안심병원 
+		where 시도=#{si} and 시군구=#{gu}
+	</select>
+	
+	<select id="선별진료소" resultType="ThemeDto">
+		select 시도, 시군구, 이름, 주소, 전화번호, value 
+		from 선별진료소 
+		where 시도=#{si} and 시군구=#{gu}
+	</select>
+	
+	<select id="호흡기전담클리닉" resultType="ThemeDto">
+		select 시도, 시군구, 이름, 주소, 전화번호, value 
+		from 호흡기전담클리닉 
+		where 시도=#{si} and 시군구=#{gu}
+	</select>
+	
+</mapper>
