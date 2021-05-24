@@ -9,7 +9,7 @@ import Mypage from "@/views/user/MyPage.vue";
 import Modify from "@/views/user/Modify.vue";
 import Book from "@/views/Book.vue";
 import Theme from "@/views/Theme.vue";
-
+import Kakao from "@/views/user/LoginKakao.vue"
 //import Apt from '@/views/Apt.vue';
 Vue.use(Router);
 Vue.use(Meta)
@@ -156,7 +156,12 @@ export default new Router({
           path: "modify/:isbn",
           name: "book-modify",
           component: () => import("@/components/book/BookModify.vue")
-        }
+        },
+        {
+          path: "/kakao",
+          name: "kakaologin",
+          component: Kakao
+        },
       ],
       redirect: () => {
         return "/book";

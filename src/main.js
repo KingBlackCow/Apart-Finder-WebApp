@@ -9,7 +9,6 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import Geocoder from "@pderas/vue2-geocoder";
 import axios from 'axios'
-
 // Install BootstrapVue
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
@@ -52,3 +51,5 @@ Vue.use(Geocoder, {
   defaultMode:        'address', // or 'lat-lng'
   googleMapsApiKey:   'AIzaSyAAHuS3QzpixOgCb9AOfb9yE7ITxgVmigs'
 })
+
+
