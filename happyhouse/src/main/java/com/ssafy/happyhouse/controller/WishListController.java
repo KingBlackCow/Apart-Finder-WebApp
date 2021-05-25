@@ -3,6 +3,7 @@ package com.ssafy.happyhouse.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,14 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyhouse.model.BookDto;
 import com.ssafy.happyhouse.model.WishListDto;
 import com.ssafy.happyhouse.model.service.JwtServiceImpl;
 import com.ssafy.happyhouse.model.service.WishListService;
@@ -50,11 +49,14 @@ public class WishListController {
 	@PostMapping("/add")
 	public ResponseEntity<Map<String, Object>> join(@RequestBody @ApiParam(value = "위시리스트추가", required = true)WishListDto wishListDto, Model model, HttpSession session) throws Exception {
 		System.out.println("위시리스트추가컨트롤러 실행");
-		System.out.println(wishListDto.getNo());
-		System.out.println(wishListDto.getName());
-		System.out.println(wishListDto.getDong());
-		System.out.println(wishListDto.getFloor());
-		System.out.println(wishListDto.getPrice());
+		
+		StringTokenizer st =new StringTokenizer(wishListDto.getPrice(),",");
+		String a= st.nextToken();
+		String b= st.nextToken();
+	
+		a=a+b;
+		wishListDto.setPrice(a);
+		System.out.println(a);
 		HttpStatus status = HttpStatus.ACCEPTED;
 		Map<String, Object> resultMap = new HashMap<>();
 		try {

@@ -34,12 +34,7 @@ public class BookRestController {
 	public ResponseEntity<List<BookDto>> listBook() {
 		logger.debug("listBook - 호출");
 		System.out.println("모든책정보반환");
-		for(BookDto dto:bookService.list()) {
-			System.out.println(dto.getIsbn());
-			System.out.println(dto.getPrice());
-			System.out.println(dto.getJoindate());
-			
-		}
+		
 		return new ResponseEntity<>(bookService.list(), HttpStatus.OK);
 	}
 
@@ -67,7 +62,12 @@ public class BookRestController {
 	public ResponseEntity<String> modifyBook(@RequestBody BookDto bookDto) {
 		logger.debug("modifyBook - 호출");
 		logger.debug("" + bookDto);
-		System.out.println("wow this is update");
+		System.out.println("모디파이북");
+		System.out.println(bookDto.getIsbn());
+		System.out.println(bookDto.getTitle());
+		System.out.println(bookDto.getContent());
+		System.out.println(bookDto.getAuthor());
+
 		if(bookService.modify(bookDto)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
@@ -80,8 +80,10 @@ public class BookRestController {
 		logger.debug("deleteBook - 호출");
 		System.out.println("hi");
 		if(bookService.delete(isbn)) {
+			System.out.println("성공");
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
+		System.out.println("망함");
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 }
