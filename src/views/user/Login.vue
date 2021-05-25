@@ -7,7 +7,7 @@
           <b-card
             class="text-center mt-6"
             header-html="<h3>로그인</h3>"
-            style="max-width: 80rem;"
+            style="max-width: 80rem; color:black"
             align="left"
           >
             <b-form class="text-left">
@@ -150,5 +150,6 @@ export default {
 
 #app img {
   width: 200px;
-} 
+}
+
 </style>

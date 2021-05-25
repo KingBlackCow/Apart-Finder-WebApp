@@ -1,7 +1,7 @@
 <template>
   <v-layout column justify-center align-center class="mt-4 pt-2">
 
-    <vue-typer class="headline" :repeat="0" text="Apart Selling Finder"></vue-typer>
+    <h1>Apart Selling Finder</h1>
     <vue-typer
       :text="text1"
       :repeat="Infinity"

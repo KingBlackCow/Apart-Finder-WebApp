@@ -69,7 +69,7 @@
         <v-btn flat to="/" active-class="green--text headline">Home</v-btn>
         <v-btn flat to="/Apt" active-class="green--text headline">Apt</v-btn>
         <v-btn flat to="/services" active-class="green--text headline">Services</v-btn>
-        <v-btn flat to="/popular" active-class="green--text headline">Popular</v-btn>
+        <v-btn @click="popularUpdate" flat to="/popular" active-class="green--text headline">Popular</v-btn>
         <v-btn flat to="/thema" active-class="green--text headline">Circumstance</v-btn>
         <v-btn flat to="/wishlist" active-class="green--text headline">WishList</v-btn>
         <v-btn flat to="/book" active-class="green--text headline">Board</v-btn>
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   props: {
@@ -102,6 +102,9 @@ export default {
     ...mapState(["userInfo", "isLogin"])
   },
   methods: {
+    ...mapActions([
+      'getCityListRand',
+    ]),
     changeTheme() {
       this.$emit("changeTheme", this.goDark);
     },
@@ -117,6 +120,9 @@ export default {
         .catch(() => {
           console.log("로그아웃 문제!!!");
         });
+    },
+    popularUpdate(){
+      this.getCityListRand();
     }
   }
 };
