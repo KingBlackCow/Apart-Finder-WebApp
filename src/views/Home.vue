@@ -103,8 +103,6 @@
 <script>
 import { VueTyper } from "vue-typer";
 import VueCompareImage from "vue-compare-image";
-import VueDisplacementSlideshow from "vue-displacement-slideshow";
-import { slider, slideritem } from 'vue-concise-slider'
 export default {
   metaInfo: {
     title: "Home",
@@ -121,9 +119,6 @@ export default {
   components: {
     "vue-typer": VueTyper,
     VueCompareImage,
-    VueDisplacementSlideshow,
-    slider,
-    slideritem
   }, 
   
   data() {
