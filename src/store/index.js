@@ -62,6 +62,9 @@ export default new Vuex.Store({
         apts(state) {
             return state.apts;
         },
+        markers(state) {
+            return state.markers;
+        },
         books(state) {
             return state.books;
         },
@@ -93,10 +96,12 @@ export default new Vuex.Store({
             state.selectedImage = selectedImage;
         },
         SET_MARKER(state, data) {
-            console.log(typeof (data));
             console.log(data);
 
-            state.apts[data.idx].position = data.position;
+            // state.apts[data.idx].position = data.position;
+            let pos = {};
+            pos.position = { lat: data.lat, lng: data.lng };
+            state.markers.push(pos);
         },
         SET_CITY(state, data) {
             state.cityList.length = 0;
@@ -215,20 +220,16 @@ export default new Vuex.Store({
                     console.dir(error);
                 });
         },
-        getMarkers({ commit }, item) {
+        getMarkers({ commit, state }, item) {
+            state.markers = [];
+
             item.forEach((element, idx) => {
                 let addressObj = {
                     address_line_1: element.법정동 + " " + element.도로명 + " " + element.아파트,
                 }
 
                 Vue.$geocoder.send(addressObj, response => {
-                    commit('SET_MARKER', {
-                        idx: idx,
-                        position: {
-                            lat: response.results[0].geometry.location.lat, // 해당 아파트의 lat
-                            lng: response.results[0].geometry.location.lng, // 해당 아파트의 lng
-                        }
-                    });
+                    commit('SET_MARKER', response.results[0].geometry.location);
                 });    
             });
         },
