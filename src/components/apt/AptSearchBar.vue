@@ -20,9 +20,9 @@ export default {
   data() {
     return {
       dongCode: '',
-      city: null,
-      gu: null,
-      dong: null,
+      city: '서울특별시',
+      gu: '종로구',
+      dong: '청운동',
     };
   },
   computed: {
@@ -47,6 +47,9 @@ export default {
   },
   created() {
     this.getCityList();
+  },
+  mounted() {
+    this.getAdd([city, gu, dong]);
   }
 };
 </script>
