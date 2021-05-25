@@ -5,12 +5,13 @@
                 <h2>시군구별 테마 정보</h2>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row class="justify-center">
             <b-form-group
                 v-slot="{ ariaDescribedby }"
                 >
                 <b-form-radio-group
                     id="btn-radios-2"
+                    style="margin-left: 44%;"
                     v-model="selected"
                     :options="options"
                     :aria-describedby="ariaDescribedby"
@@ -21,7 +22,7 @@
                 ></b-form-radio-group>
             </b-form-group>
         </b-row>
-        <b-row>
+        <b-row style="margin-left: 37%;">
             <apt-search-bar />
         </b-row>
         <b-row class="justify-center">
@@ -66,4 +67,8 @@ export default {
         width: 300px;
         height: 200px;
     }
+    .mid{
+        margin: 0 auto;
+    }
+    
 </style>
