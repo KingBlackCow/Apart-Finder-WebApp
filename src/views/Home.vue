@@ -54,7 +54,6 @@
                 보다 완벽한  집 선택을 위한 서비스!
               </p>
             
-              <!-- <span class="green--text font-weight-bold">VUE</span> -->
             </div>
           </div>
         </v-card-title>
@@ -78,7 +77,7 @@
     </v-flex>
   
     <v-layout row justify-center align-center wrap class="mt-6 pt-2">
-      <v-flex v-for="portfolio in portfolios" :key="portfolio.src" xs12 sm12 md4 lg4 xl4>
+      <v-flex v-for="portfolio in portfolios" :key="portfolio.src" md2>
         <v-card
           :to="'/'+(portfolio.title).toLowerCase()"
           hover
@@ -89,7 +88,8 @@
         >
           <v-card-title></v-card-title>
           <v-img :src="portfolio.src" aspect-ratio="2.75" width="150" height="150" contain></v-img>
-          <v-card-title primary-title class="justify-center">
+          
+          <v-card-title primary-title class="justify-center" style="20px">
             <v-flex text-xs-center subheading font-weight-bold>{{portfolio.title}}</v-flex>
           </v-card-title>
         </v-card>
@@ -160,13 +160,26 @@ export default {
         },
 
         {
-          src: "https://i.imgur.com/wXLtLKy.png",
-          title: "Video"
+          src: "https://i.postimg.cc/kM0Nx1wM/infra2.png",
+          title: "Thema"
         },
         {
-          src: "https://i.imgur.com/g74mGuU.png",
-          title: "Graphic"
-        }
+          src: "https://i.postimg.cc/KYMpGSsL/wishlist.png",
+          title: "Wishlist"
+        },
+        {
+          src: "https://i.postimg.cc/CLrcbL3k/apt.png",
+          title: "apt"
+        },
+        {
+          src: "https://i.postimg.cc/fyLxbYTF/board.png",
+          title: "board"
+        },
+        {
+          src: "https://i.postimg.cc/bdfN5jMT/mypage.png",
+          title: "Mypage"
+        },
+      
       ],
       someList:[
         {

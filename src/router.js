@@ -134,7 +134,7 @@ export default new Router({
     },
     {
       name: "book",
-      path: "/book",
+      path: "/board",
       component: Book,
       children: [
         {
