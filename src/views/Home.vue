@@ -17,10 +17,12 @@
     ></vue-typer>
     <br>
     <br>
-
+    
     <div> 
       <div class="today">
-        <h1>현재 아파트 매물 수</h1> 
+          <h1><Roller text="whole sale"
+          :charList="['a', 'b', 'c', 'd','e','f','g','h','i','w','o','l','s']"
+          transition="0.5"/></h1>
           <div> 
             <number class="number" :from="0" :to="68864" :duration="2"/>
         
@@ -117,6 +119,8 @@ import Vue from 'vue'
 import { VueTyper } from "vue-typer";
 import VueCompareImage from "vue-compare-image";
 import VueNumber from 'vue-number-animation'
+import Roller from "vue-roller";
+
 Vue.use(VueNumber)
 
 
@@ -134,6 +138,7 @@ export default {
   components: {
     "vue-typer": VueTyper,
     VueCompareImage,
+    Roller
   }, 
   
   data() {
@@ -243,7 +248,7 @@ export default {
 }
 
 .vue-typer {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Verdana, Geneva, Arial, sans-serif;
 }
 .vue-typer .custom.char.typed {
   color: white;
@@ -286,14 +291,6 @@ export default {
   font-style:italic;
 }
 
-.multiEffect2 {  
-  color : white;
-  text-shadow : 2px 2px 2px white, 
-          0 0 50px green,
-          0 0 5px black;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
 @keyframes textColorAnimation {
     0% {  color : white;}
     50% {  color : black;}
@@ -302,7 +299,7 @@ export default {
 h1 {
   font-family : "Georgia";
   animation-name: textColorAnimation;
-  animation-duration: 5s;
+  animation-duration: 10s;
   animation-iteration-count: infinite;
 }
 
