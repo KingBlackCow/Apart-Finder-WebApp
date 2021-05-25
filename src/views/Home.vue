@@ -20,7 +20,7 @@
 
     <div> 
       <div class="today">
-        <h1 class="multiEffect2">Currently for sale</h1> 
+        <h1>현재 아파트 매물 수</h1> 
           <div> 
             <number class="number" :from="0" :to="68864" :duration="2"/>
         
@@ -106,10 +106,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <div id="chart">
-      <p>Today's Chart</p>
-      <apexchart width="500" height="350" type="bar" :options="options2" :series="series"/>
-    </div>
+    
   </v-layout>
     
 
@@ -120,11 +117,9 @@ import Vue from 'vue'
 import { VueTyper } from "vue-typer";
 import VueCompareImage from "vue-compare-image";
 import VueNumber from 'vue-number-animation'
-import VueApexCharts from 'vue-apexcharts'
 Vue.use(VueNumber)
 
-Vue.use(VueApexCharts)
-Vue.component('apexchart', VueApexCharts)
+
 
 export default {
   metaInfo: {
@@ -229,45 +224,7 @@ export default {
         timingFunction: 'ease',
         speed: 300
       },
-      options2: { 
-        xaxis: { 
-          categories: ['1월', '2월', '3월', '4월', '5월', '6월'], 
-        }, 
-        colors: ['#FEDD36'], 
-        fill: { 
-          type: 'gradient',
-          gradient: { 
-            shadeIntensity: 1, 
-            type: "vertical", 
-            opacityFrom: 0.7, 
-            opacityTo: 0.9, 
-            colorStops: [ {
-              offset: 0, 
-              color: "#fbc2eb", 
-              opacity: 1
-            }, 
-            {
-              offset: 100,
-              color: "#a18cd1", 
-              opacity: 1
-            }
-            ]
-          } 
-        }, 
-        plotOptions: {
-          bar: {
-            columnWidth: '30%', 
-            endingShape: 'rounded', 
-            dataLabels: {position: 'top'}
-          } 
-        }, 
-      }, 
-      series: [
-        {
-          name: 'data', 
-          data: [150, 2500, 3154, 448, 544, 412]
-        }
-      ], 
+      
     } 
   }
 }

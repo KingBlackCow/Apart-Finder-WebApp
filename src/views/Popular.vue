@@ -47,8 +47,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex';
 import { createInstance } from "@/api/index.js";
+import VueApexCharts from 'vue-apexcharts'
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
+
 export default {
   metaInfo: {
     title: "",
