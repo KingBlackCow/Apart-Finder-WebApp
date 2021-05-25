@@ -51,30 +51,8 @@ import { mapGetters, mapActions } from 'vuex';
 import { createInstance } from "@/api/index.js";
 export default {
   metaInfo: {
-    title: "Popular",
-    titleTemplate: "%s ← Popular",
-    meta: [
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        name: "description",
-        content:
-          "Eldin Zaimovic's Web Portfolio Vue Vue.js Nuxt Nuxt.js HTML CSS Vuetify Axios GraphQL JavaScript Web Developer Front-End Frontend Designer App Responsive"
-      },
-      { charset: "utf-8" },
-      { property: "og:title", content: "Eldin' Space" },
-      { property: "og:site_name", content: "Eldin' Space" },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://eldin.space" },
-      {
-        property: "og:image",
-        content: "https://i.imgur.com/Dcz2PGx.jpg"
-      },
-      {
-        property: "og:description",
-        content:
-          "Eldin Zaimovic's Web Portfolio Vue Vue.js Nuxt Nuxt.js HTML CSS Vuetify Axios GraphQL JavaScript Web Developer Front-End Frontend Designer App Responsive"
-      }
-    ]
+    title: "",
+    titleTemplate: "ApartFinder",
   },
   data() {
     return {
@@ -83,8 +61,6 @@ export default {
         {
           dialog: false,
           title: "Euphoric Voyage",
-          git: "https://github.com/EldinZaimovic/euphoric-voyage",
-          demo: "https://www.euphoric-voyage.com/",
           tech: {
             tech1: "",
             tech2: "",
@@ -96,52 +72,44 @@ export default {
         {
           dialog: false,
           title: "This Site",
-          git: "https://github.com/EldinZaimovic/Eldin-Space-Vue",
-          demo: "https://eldin.space/",
           tech: {
-            tech1: "VUE",
-            tech2: "Storyblok",
-            tech3: "HTML",
-            tech4: "JavaScript"
+            tech1: "",
+            tech2: "",
+            tech3: "",
+            tech4: ""
           },
           poster: "https://i.postimg.cc/26VbMjqn/apt2.jpg"
         },
         {
           dialog: false,
           title: "Frontend Developer at Brandly.com",
-          git: "https://cdn.neow.in/news/images/uploaded/2018/11/1543476286_cybersecurity.jpg",
-          demo: "https://www.brandly.com/",
           tech: {
-            tech1: "VUE",
-            tech2: "SCSS",
-            tech3: "HTML",
-            tech4: "JavaScript"
+            tech1: "",
+            tech2: "",
+            tech3: "",
+            tech4: ""
           },
           poster: "https://i.postimg.cc/Px9pjGZ9/apt3.jpg"
         },
         {
           dialog: false,
           title: "Digital Madness Test",
-          git: "https://github.com/EldinZaimovic/Digital-Madness-test",
-          demo: "https://digital-madness-test.netlify.com/",
           tech: {
-            tech1: "VUE",
-            tech2: "CSS",
-            tech3: "HTML",
-            tech4: "JavaScript"
+            tech1: "",
+            tech2: "",
+            tech3: "",
+            tech4: ""
           },
           poster: "https://i.postimg.cc/9094XxYM/apt4.jpg"
         },
         {
           dialog: false,
           title: "IBM Coding Challenge - Films Location",
-          git: "https://github.com/EldinZaimovic/Film-Location-List",
-          demo: "https://film-location-ibm-cc.netlify.com/",
           tech: {
-            tech1: "VUE",
-            tech2: "Lodash",
-            tech3: "HTML",
-            tech4: "JavaScript"
+            tech1: "",
+            tech2: "",
+            tech3: "",
+            tech4: ""
           },
           poster: "https://i.postimg.cc/44HH1dRg/apt5.jpg"
         },

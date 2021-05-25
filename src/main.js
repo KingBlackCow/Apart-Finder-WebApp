@@ -10,14 +10,15 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 import Geocoder from "@pderas/vue2-geocoder";
 import axios from 'axios'
 // Install BootstrapVue
-
+import VueNumber from 'vue-number-animation' 
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
-
+Vue.use(VueNumber);
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+
 
 Vue.config.productionTip = false
 const isProd = process.env.NODE_ENV === "production"

@@ -81,7 +81,6 @@ export default {
       this.aptWish.dong=this.apt.법정동;
       this.aptWish.floor=this.apt.층;
       this.aptWish.price=this.apt.거래금액;
-      
       instance.post("/wish/add", JSON.stringify(this.aptWish))
       .then(
         (response) => {

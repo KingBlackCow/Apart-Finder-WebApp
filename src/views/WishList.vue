@@ -1,6 +1,6 @@
 <template>
   <div style="padding:30px">
-    <h1 class="underline">WishList</h1>
+    <h1 class="green--text">WishList</h1>
     
     <div v-if="wishapts.length">
       <table id="book-list">
@@ -34,7 +34,13 @@
       </table>
     </div>
     <div v-else class="text-center">게시글이 없습니다.</div>
+    <div id="chart" >
+      <p class="green--text">Price Compare Chart</p>
+      <apexchart width="1000" height="600" type="bar" color=green :options="options2" :series="series"/>
+    </div>
   </div>
+
+  
 </template>
 
 <script>
@@ -51,9 +57,56 @@ export default {
   },
   created() {
     this.$store.dispatch("getWishLists");
+    this.wishapts.forEach(wishapt => {
+      this.options2.xaxis.categories.push(wishapt.name);
+      this.series[0].data.push(parseInt(wishapt.price));
+    });
   },
   methods: {
     
+  },
+  data(){
+    return{
+      options2: { 
+        xaxis: { 
+          categories: [], 
+        }, 
+        colors: ['#FEDD36'], 
+        fill: { 
+          type: 'gradient',
+          gradient: { 
+            shadeIntensity: 1, 
+            type: "vertical", 
+            opacityFrom: 0.7, 
+            opacityTo: 0.9, 
+            colorStops: [ {
+              offset: 0, 
+              color: "#fbc2eb", 
+              opacity: 1
+            }, 
+            {
+              offset: 100,
+              color: "#a18cd1", 
+              opacity: 1
+            }
+            ]
+          } 
+        }, 
+        plotOptions: {
+          bar: {
+            columnWidth: '30%', 
+            endingShape: 'rounded', 
+            dataLabels: {position: 'top'}
+          } 
+        }, 
+      }, 
+      series: [
+        {
+          name: 'data', 
+          data: []
+        }
+      ], 
+    }
   }
 };
 </script>
@@ -74,6 +127,9 @@ export default {
   border-bottom: 1px solid #ddd;
   height: 50px;
 }
-
+#chart { padding: 50px; align-content: center;} 
+#chart p { 
+  font-size: 30px; font-weight: bold; color: green; margin: 0 0 50px 0; 
+}
 
 </style>

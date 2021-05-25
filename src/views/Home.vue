@@ -1,7 +1,7 @@
 <template>
   <v-layout column justify-center align-center class="mt-4 pt-2">
 
-    <h1>Apart Selling Finder</h1>
+    <h1 class="multiEffect">Apart Finder</h1>
     <vue-typer
       :text="text1"
       :repeat="Infinity"
@@ -17,6 +17,17 @@
     ></vue-typer>
     <br>
     <br>
+
+    <div> 
+      <div class="today">
+        <h1 class="multiEffect2">Currently for sale</h1> 
+          <div> 
+            <number class="number" :from="0" :to="68864" :duration="2"/>
+        
+          </div> 
+        </div> 
+    </div>
+
     
     <VueCompareImage
       class="hidden-md-and-down"
@@ -45,10 +56,10 @@
       <v-card flat color="transparent" max-width="500">
         <v-card-title primary-title>
           <div>
-            <h3 class="headline mb-0">
+            <h1 class="headline mb-0">
               <span>What about this </span>
               <span class="green--text">service?</span>
-            </h3>
+            </h1>
             <div>
               <p>
                 보다 완벽한  집 선택을 위한 서비스!
@@ -95,14 +106,26 @@
         </v-card>
       </v-flex>
     </v-layout>
-    
+    <div id="chart">
+      <p>Today's Chart</p>
+      <apexchart width="500" height="350" type="bar" :options="options2" :series="series"/>
+    </div>
   </v-layout>
     
+
 </template>
 
 <script>
+import Vue from 'vue'
 import { VueTyper } from "vue-typer";
 import VueCompareImage from "vue-compare-image";
+import VueNumber from 'vue-number-animation'
+import VueApexCharts from 'vue-apexcharts'
+Vue.use(VueNumber)
+
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
+
 export default {
   metaInfo: {
     title: "Home",
@@ -110,10 +133,7 @@ export default {
     meta: [
       
       { charset: "utf-8" },
-      { property: "og:title"},
-      { property: "og:site_name"},
-      { property: "og:type" },
-      { property: "og:description" }
+      
     ]
   },
   components: {
@@ -165,19 +185,19 @@ export default {
         },
         {
           src: "https://i.postimg.cc/KYMpGSsL/wishlist.png",
-          title: "Wishlist"
+          title: "WishList"
         },
         {
           src: "https://i.postimg.cc/CLrcbL3k/apt.png",
-          title: "apt"
+          title: "Apt"
         },
         {
           src: "https://i.postimg.cc/fyLxbYTF/board.png",
-          title: "board"
+          title: "Board"
         },
         {
           src: "https://i.postimg.cc/bdfN5jMT/mypage.png",
-          title: "Mypage"
+          title: "MyPage"
         },
       
       ],
@@ -208,13 +228,52 @@ export default {
         slidesToScroll:1,
         timingFunction: 'ease',
         speed: 300
-      }
-    
-    };
+      },
+      options2: { 
+        xaxis: { 
+          categories: ['1월', '2월', '3월', '4월', '5월', '6월'], 
+        }, 
+        colors: ['#FEDD36'], 
+        fill: { 
+          type: 'gradient',
+          gradient: { 
+            shadeIntensity: 1, 
+            type: "vertical", 
+            opacityFrom: 0.7, 
+            opacityTo: 0.9, 
+            colorStops: [ {
+              offset: 0, 
+              color: "#fbc2eb", 
+              opacity: 1
+            }, 
+            {
+              offset: 100,
+              color: "#a18cd1", 
+              opacity: 1
+            }
+            ]
+          } 
+        }, 
+        plotOptions: {
+          bar: {
+            columnWidth: '30%', 
+            endingShape: 'rounded', 
+            dataLabels: {position: 'top'}
+          } 
+        }, 
+      }, 
+      series: [
+        {
+          name: 'data', 
+          data: [150, 2500, 3154, 448, 544, 412]
+        }
+      ], 
+    } 
   }
-};
+}
+
 </script>
-<style>
+<style scoped>
 @keyframes rocking {
   0%,
   100% {
@@ -250,5 +309,50 @@ export default {
   width: 200px;
   height: 100%;
 }
+
+.today { margin: 50px auto; text-align: center; } 
+.today p { font-size: 70px; line-height: 1; } 
+/* div { margin: 50px 0 0 0; padding: 30px; font-size: 40px; font-weight: bold; color: #707070; } */
+.number { 
+  letter-spacing: 2px; 
+  padding: 5px;
+  border-radius: 20px; 
+  font-size: 40px;
+}
+.textA { margin: 50px 0 0 0; padding: 30px; font-size: 40px; font-weight: bold; color:greenyellow; }
+.multiEffect {  
+  color : white;
+  text-shadow : 2px 2px 2px white, 
+          0 0 50px blue,
+          0 0 5px black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style:italic;
+}
+
+.multiEffect2 {  
+  color : white;
+  text-shadow : 2px 2px 2px white, 
+          0 0 50px green,
+          0 0 5px black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+@keyframes textColorAnimation {
+    0% {  color : white;}
+    50% {  color : black;}
+    100% { color : white;}
+}
+h1 {
+  font-family : "Georgia";
+  animation-name: textColorAnimation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+#chart { padding: 50px; } 
+#chart p { 
+  font-size: 30px; font-weight: bold; color: #737373; margin: 0 0 50px 0; }
+
+
 </style>
 

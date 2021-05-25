@@ -26,12 +26,8 @@ import TheFooter from "./components/TheFooter";
 export default {
   name: "App",
   metaInfo: {
-    title: "Home",
-    titleTemplate: "%s ← ApartFinder",
-    meta: [
-      
-      
-    ]
+    title: "",
+    titleTemplate: "%s ApartFinder",
   },
   components: {
     TheHeader,

@@ -70,7 +70,7 @@
         <v-btn flat to="/Apt" active-class="green--text headline">Apt</v-btn>
         <v-btn @click="popularUpdate" flat to="/popular" active-class="green--text headline">Popular</v-btn>
         <v-btn flat to="/thema" active-class="green--text headline">Circumstance</v-btn>
-        <v-btn flat to="/wishlist" active-class="green--text headline">WishList</v-btn>
+        <v-btn @click="wishUpdate" flat to="/wishlist" active-class="green--text headline">WishList</v-btn>
         <v-btn flat to="/book" active-class="green--text headline">Board</v-btn>
         <v-btn flat to="/mypage" active-class="green--text headline">Mypage</v-btn>
         <v-btn flat to="/" active-class="" @click.prevent="onClickLogout">Logout</v-btn>
@@ -103,6 +103,7 @@ export default {
   methods: {
     ...mapActions([
       'getCityListRand',
+      'getWishLists'
     ]),
     changeTheme() {
       this.$emit("changeTheme", this.goDark);
@@ -122,6 +123,9 @@ export default {
     },
     popularUpdate(){
       this.getCityListRand();
+    },
+    wishUpdate(){
+      this.getWishLists();
     }
   }
 };
