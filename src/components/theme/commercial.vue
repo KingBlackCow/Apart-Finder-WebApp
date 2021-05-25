@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <button @click="generateChart"><img src="https://i.postimg.cc/63fChtQd/search.png" style="width:50px;height:50px;" alt="검색"></img></button>
+    <div >
+        <div style="margin-left: 45%;">
+            <button @click="generateChart" ><img src="https://i.postimg.cc/63fChtQd/search.png" style="width:50px;height:50px;" alt="검색">검색</img></button>
+        </div>
         <div id='arc' ref="chart"></div>
     </div>
 </template>
@@ -16,8 +18,6 @@ export default {
         };
     },
     mounted() {
-        // this.generateArc();
-        // this.generateChart();
     },
     computed: {
         ...mapGetters([
