@@ -13,7 +13,7 @@
         :key="index"
       >
         <template v-slot:activator="{ on }">
-          <v-flex xs12 sm6 md4 lg4 xl4 v-on="on">
+          <v-flex class="mt-6 pt-2" md6 v-on="on">
             <v-card hover flat color="transparent">
               <h1>현재 {{index+1}}위</h1>
               <v-img
@@ -156,7 +156,7 @@ export default {
     };
   },
   mounted() {
-    this.getCityListRand();
+    //this.getCityListRand();
     console.log(this.cityList);
     this.projects[0].title = this.cityList[0].text.aptNAme;
     this.projects[0].tech.tech1 = this.cityList[0].text.code;

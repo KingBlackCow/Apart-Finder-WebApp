@@ -68,11 +68,10 @@
       <v-toolbar-items class="hidden-sm-and-down" v-else>
         <v-btn flat to="/" active-class="green--text headline">Home</v-btn>
         <v-btn flat to="/Apt" active-class="green--text headline">Apt</v-btn>
-        <v-btn flat to="/services" active-class="green--text headline">Services</v-btn>
         <v-btn @click="popularUpdate" flat to="/popular" active-class="green--text headline">Popular</v-btn>
         <v-btn flat to="/thema" active-class="green--text headline">Circumstance</v-btn>
         <v-btn flat to="/wishlist" active-class="green--text headline">WishList</v-btn>
-        <v-btn flat to="/board" active-class="green--text headline">Board</v-btn>
+        <v-btn flat to="/book" active-class="green--text headline">Board</v-btn>
         <v-btn flat to="/mypage" active-class="green--text headline">Mypage</v-btn>
         <v-btn flat to="/" active-class="" @click.prevent="onClickLogout">Logout</v-btn>
         <v-btn @click="changeTheme" depressed small icon>

@@ -25,7 +25,13 @@ export default {
       images: [
       'https://i.postimg.cc/T30Z4F1x/apt1.jpg',
       'https://i.postimg.cc/3N2qCbVP/apt2.jpg',
-      'https://i.postimg.cc/Ls3fFkfj/apt3.jpg'
+      'https://i.postimg.cc/Ls3fFkfj/apt3.jpg',
+      'https://i.postimg.cc/sXXDxnsz/apt1.jpg',
+      "https://i.postimg.cc/26VbMjqn/apt2.jpg",
+      "https://i.postimg.cc/Px9pjGZ9/apt3.jpg",
+      "https://i.postimg.cc/9094XxYM/apt4.jpg",
+      "https://i.postimg.cc/44HH1dRg/apt5.jpg"
+
       ],
     
     };

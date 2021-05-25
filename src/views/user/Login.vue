@@ -61,6 +61,13 @@
           :on-failure=onFailure
         
         />
+
+        <NaverLogin
+          client-id="YTPs6sa4pjkB0w6gKzrD"
+          callback-url="http://localhost:8080"
+          is-popup="false"
+          :callbackFunction=callbackFunction
+        />
   </div>
         </b-col>
         <b-col cols="4"></b-col>
@@ -74,12 +81,31 @@ import { login } from "@/api/user.js";
 import Navi from "@/components/common/Navi";
 import KakaoLogin from 'vue-kakao-login'
 import { mapState } from "vuex";
+import NaverLogin from 'vue-naver-login'
+
+let callbackFunction = (status) => {
+    if (status) {
+    /* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
+    var email = naverLogin.user.getEmail();
+    if( email == undefined || email == null) {
+      alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+      /* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
+      naverLogin.reprompt();
+      return;
+    }
+ 
+    window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/sample/main.html");
+  } else {
+    console.log("callback 처리에 실패하였습니다.");
+  }
+}
 
 export default {
   name: "login",
   components: {
     Navi,
-    KakaoLogin
+    KakaoLogin,
+    NaverLogin
   },
   data() {
     return {
@@ -127,6 +153,7 @@ export default {
       console.log("failure");
       this.$router.push("/");
     },
+    callbackFunction
   },
   computed: {
     kakaoLoginLink() {

@@ -133,8 +133,13 @@ export default new Router({
       component: Theme
     },
     {
-      name: "book",
       path: "/board",
+      name: "book",
+      component: () => import("@/components/book/BookList.vue")
+    },
+    {
+      name: "book",
+      path: "/book",
       component: Book,
       children: [
         {

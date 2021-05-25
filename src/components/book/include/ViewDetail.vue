@@ -58,7 +58,7 @@ export default {
 .regist_form {
   text-align: left;
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: white;
   padding: 20px;
 }
 input,

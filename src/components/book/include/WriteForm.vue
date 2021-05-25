@@ -7,7 +7,7 @@
       <template v-if="type == 'create'">글등록</template>
       <template v-else >수정</template>
     </h1>
-    <div class="regist_form">
+    <div>
       <!-- <label for="isbn">글번호</label>
       <input v-if="type == 'create'" type="text" id="isbn" name="isbn" v-model="isbn" ref="isbn" /> -->
       <!-- <input v-else type="text" id="isbn" name="isbn" v-model="isbn" ref="isbn" readonly /><br /> -->
@@ -18,7 +18,7 @@
       <label for="content">내용</label><br />
       <textarea id="content" name="content" v-model="content" ref="content" cols="35" rows="5"></textarea><br />
       <button v-if="type == 'create'" @click="checkValue" style="padding-right:10px">등록</button>
-      <button v-else @click="checkValue" style="padding-d">수정</button>
+      <button v-else @click="checkValue" style="padding-right:10px">수정</button>
       <button @click="moveList">목록</button>
     </div>
   </div>
@@ -61,8 +61,8 @@ export default {
       // isbn, 제목, 저자, 가격, 설명이 없을 경우 각 항목에 맞는 메세지를 출력
       let err = true;
       let msg = "";
-      this.isbn="123";
-      !this.isbn && ((msg = "isbn 입력해주세요"), (err = false), this.$refs.isbn.focus());
+      
+      
       err && !this.title && ((msg = "제목 입력해주세요"), (err = false), this.$refs.title.focus());
       err && !this.author && ((msg = "저자 입력해주세요"), (err = false), this.$refs.author.focus());
       err && !this.content && ((msg = "내용 입력해주세요"), (err = false), this.$refs.content.focus());
