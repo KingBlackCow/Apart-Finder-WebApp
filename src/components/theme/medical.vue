@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="generateChart">의료 테마정보</button>
+        <button @click="generateChart"><img src="https://i.postimg.cc/63fChtQd/search.png" style="width:50px;height:50px;" alt="검색">검색</img></button>
         <div id='arc' ref="chart"></div>
     </div>
 </template>
@@ -35,7 +35,7 @@ export default {
                     .sum(d => d.value)
                     .sort((a, b) => b.value - a.value));
             const data = this.themeData;
-            const width = 932;
+            const width = 1500;
             const height = width;
             const color = d3.scaleLinear()
                             .domain([0, 5])

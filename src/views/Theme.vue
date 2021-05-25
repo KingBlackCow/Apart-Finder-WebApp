@@ -1,5 +1,5 @@
 <template>
-    <b-container class="bv-example-row doctor">
+    <b-container class="bv-example-row doctor" >
         <b-row>
             <b-col cols = "4">
                 <h2>시군구별 테마 정보</h2>
@@ -24,7 +24,7 @@
         <b-row>
             <apt-search-bar />
         </b-row>
-        <b-row>
+        <b-row class="justify-center">
             <b-col cols = "6" v-if="selected=='medic'">
                 <medical-chart />
             </b-col>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="generateChart">상권 테마정보</button>
+        <button @click="generateChart"><img src="https://i.postimg.cc/63fChtQd/search.png" style="width:50px;height:50px;" alt="검색">검색</img></button>
         <div id='arc' ref="chart"></div>
     </div>
 </template>
