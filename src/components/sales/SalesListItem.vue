@@ -8,7 +8,7 @@
   >
     <b-col cols="2" class="text-center">
       <!-- <img src="@/assets/apt.png" class="img-list" alt="" /> -->
-      <p><img style="width:100%" :url="this.salesApt.img_url" alt=""></p>
+      <p><img style="width:100%" :src="this.salesApt.img_url" alt=""></p>
     </b-col>
     <b-col cols="10"> {{ this.salesApt.complex_name }} </b-col>
     <b-col cols="10"> {{ this.salesApt.title }}</b-col>
