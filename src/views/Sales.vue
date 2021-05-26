@@ -9,11 +9,6 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col cols = "6">
-        <gmap />
-      </b-col>
-    </b-row>
-    <b-row>
       <b-col cols="6" align="left">
         <apt-list />
       </b-col>
@@ -26,9 +21,8 @@
 
 <script>
 import AptSearchBar from '@/components/apt/AptSearchBar.vue';
-import AptList from '@/components/apt/AptList.vue';
-import AptDetail from '@/components/apt/AptDetail.vue';
-import Gmap from '@/components/apt/Gmap.vue';
+import AptList from '@/components/sales/SalesList.vue';
+import AptDetail from '@/components/sales/SalesDetail.vue';
 
 export default {
   name: 'Apt',
@@ -36,7 +30,6 @@ export default {
     AptSearchBar,
     AptList,
     AptDetail,
-    Gmap,
   },
   data() {
     return {};

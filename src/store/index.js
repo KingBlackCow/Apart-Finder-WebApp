@@ -22,6 +22,7 @@ export default new Vuex.Store({
         apts: [],
         apt: Object,
         salesApt: [],
+        salesapt: Object,
 
         cityList: [],
         guList: [],
@@ -80,6 +81,9 @@ export default new Vuex.Store({
         },
         commData(state) {
             return state.comm;
+        },
+        salesApts(state) {
+            return state.salesApt;
         }
     },
     mutations: {
@@ -95,6 +99,10 @@ export default new Vuex.Store({
         SELECT_IMG(state, selectedImage) {
             console.log(selectedImage);
             state.selectedImage = selectedImage;
+        },
+        SELECT_SAPT(state, apt) {
+            console.log(apt);
+            state.salesapt = apt;
         },
         SET_MARKER(state, data) {
             console.log(data);
@@ -239,6 +247,9 @@ export default new Vuex.Store({
         },
         selectApt({ commit }, apt) {
             commit('SELECT_APT', apt);
+        },
+        selectsalesApt({ commit }, salesapt) {
+            commit('SELECT_SAPT', salesapt);
         },
         selectAptImg({ commit }, selectedImage) {
             commit('SELECT_IMG', selectedImage);
