@@ -21,6 +21,7 @@ export default new Vuex.Store({
     state: {
         apts: [],
         apt: Object,
+        salesApt: [],
 
         cityList: [],
         guList: [],
@@ -186,6 +187,9 @@ export default new Vuex.Store({
                 element.value = element.statCnt;
             });
         },
+        SET_SAPT(state, payload) {
+            state.salesApt = payload;
+        }
     },
     actions: {
         getAptList({ commit, dispatch }, dongcode) {
@@ -467,6 +471,19 @@ export default new Vuex.Store({
                     });
             });
         },
+        getSales({ commit }) {
+            console.log('getsales');
+            const url = "https://www.dabangapp.com/api/3/room/list/multi-room/region?api_version=3.0.1&call_type=web&code=11110115&filters=%7B%22multi_room_type%22%3A%5B3%5D%2C%22selling_type%22%3A%5B0%2C1%2C2%5D%2C%22deposit_range%22%3A%5B0%2C999999%5D%2C%22price_range%22%3A%5B0%2C999999%5D%2C%22trade_range%22%3A%5B0%2C999999%5D%2C%22maintenance_cost_range%22%3A%5B0%2C999999%5D%2C%22room_size%22%3A%5B0%2C999999%5D%2C%22supply_space_range%22%3A%5B0%2C999999%5D%2C%22room_floor_multi%22%3A%5B1%2C2%2C3%2C4%2C5%2C6%2C7%2C-1%2C0%5D%2C%22division%22%3Afalse%2C%22duplex%22%3Afalse%2C%22room_type%22%3A%5B%5D%2C%22use_approval_date_range%22%3A%5B0%2C999999%5D%2C%22parking_average_range%22%3A%5B0%2C999999%5D%2C%22household_num_range%22%3A%5B0%2C999999%5D%2C%22parking%22%3Afalse%2C%22animal%22%3Afalse%2C%22short_lease%22%3Afalse%2C%22full_option%22%3Afalse%2C%22built_in%22%3Afalse%2C%22elevator%22%3Afalse%2C%22balcony%22%3Afalse%2C%22loan%22%3Afalse%2C%22safety%22%3Afalse%2C%22pano%22%3Afalse%2C%22deal_type%22%3A%5B0%2C1%5D%7D&page=1&version=1&zoom=14";
+
+            axios
+                .get(url)
+                .then((response) => {
+                    commit('SET_SAPT', response.data.rooms);
+                })
+                .catch((error) => {
+                    console.dir(error);
+                });
+        }
     },
     modules: {},
     plugins: [createPersistedState()],

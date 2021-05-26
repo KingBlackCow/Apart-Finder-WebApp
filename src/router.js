@@ -11,6 +11,7 @@ import Book from "@/views/Book.vue";
 import Theme from "@/views/Theme.vue";
 import Popular from "@/views/Popular.vue";
 import Kakao from "@/views/user/LoginKakao.vue";
+import Sales from "@/views/Sales.vue";
 //import Apt from '@/views/Apt.vue';
 
 Vue.use(Router);
@@ -101,6 +102,11 @@ export default new Router({
       name: "Apt",
       component: () =>
         import( /* webpackChunkName: "about" */ "./views/Apt.vue")
+    },
+    {
+      path: "/Sales",
+      name: "Sales",
+      component: Sales
     },
     {
       path: "/join",
