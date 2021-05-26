@@ -56,8 +56,11 @@ public class WishListController {
 	
 		a=a+b;
 		wishListDto.setPrice(a);
-		System.out.println(a);
+		System.out.println(wishListDto.getNo());
+		System.out.println(wishListDto.getPrice());
+		System.out.println(wishListDto.getFloor());
 		HttpStatus status = HttpStatus.ACCEPTED;
+		System.out.println();
 		Map<String, Object> resultMap = new HashMap<>();
 		try {
 			System.out.println("register전");

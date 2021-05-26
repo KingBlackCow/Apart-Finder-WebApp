@@ -8,6 +8,7 @@
 	<select id="wishList" resultType="wishListDto">
 		select no, name, dong, floor, price
 		from wishlist
+		order by joindate desc
 	</select>
 	
 	<select id="wishListInfo" parameterType="String" resultType="wishListDto">
@@ -17,8 +18,8 @@
 	</select>
 	
 	<insert id="wishListRegister" parameterType="wishListDto">
-		insert into wishlist (no, name, dong, floor, price)
-		values (#{no}, #{name}, #{dong}, #{floor}, #{price})
+		insert into wishlist (no, name, dong, floor, price, joindate)
+		values (#{no}, #{name}, #{dong}, #{floor}, #{price}, now())
 	</insert>
 	
 	<delete id="wishListDelete" parameterType="String">
