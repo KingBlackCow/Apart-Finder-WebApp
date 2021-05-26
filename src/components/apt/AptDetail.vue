@@ -86,14 +86,14 @@ export default {
         (response) => {
           if (response.data.message === "success") {
             alert("찜목록 추가 완료");
-            this.$router.push("/");
+            
           } else {
             alert("찜목록 추가 실패");
           }
         }
       )
       .catch();
-      this.$router.push('/addList');
+      //this.$router.push('/addList');
     },
   },
   created() {

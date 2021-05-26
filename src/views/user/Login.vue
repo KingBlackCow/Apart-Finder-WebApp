@@ -56,19 +56,12 @@
           <div id="app">
         <KakaoLogin
           api-key="c66a122b4c43fae154eaadd873566bb4"
-          image="kakao_login_btn_medium"
+          image="kakao_login_btn_large"
           :on-success=onSuccess
           :on-failure=onFailure
-        
         />
 
-        <NaverLogin
-          client-id="YTPs6sa4pjkB0w6gKzrD"
-          callback-url="http://localhost:8080"
-          is-popup="false"
-          :callbackFunction=callbackFunction
-        />
-  </div>
+      </div>
         </b-col>
         <b-col cols="4"></b-col>
       </b-row>
