@@ -20,17 +20,16 @@
     
     <div> 
       <div class="today">
-          <h1><Roller text="whole sale"
-          :charList="['a', 'b', 'c', 'd','e','f','g','h','i','w','o','l','s']"
-          transition="0.5"/></h1>
+          <h1><Roller text="전체 매물"
+          :charList="['전', '체', '매', '물','e','f','g','h','i','w','o','l','s']"
+          transition="2.5"/></h1>
           <div> 
-            <number class="number" :from="0" :to="68864" :duration="2"/>
+            <number class="number" :from="0" :to="68864" :duration="2.7"/>
         
           </div> 
         </div> 
     </div>
 
-    
     <VueCompareImage
       class="hidden-md-and-down"
       hover
@@ -120,7 +119,6 @@ import { VueTyper } from "vue-typer";
 import VueCompareImage from "vue-compare-image";
 import VueNumber from 'vue-number-animation'
 import Roller from "vue-roller";
-
 Vue.use(VueNumber)
 
 
@@ -138,7 +136,7 @@ export default {
   components: {
     "vue-typer": VueTyper,
     VueCompareImage,
-    Roller
+    Roller,
   }, 
   
   data() {
@@ -164,7 +162,7 @@ export default {
         },
         { href: "https://www.instagram.com/matricar", icon: "fab fa-instagram" }
       ],
-      text1: ["당신의 집을 기대합니다.", "누구보다 완벽한 집", "가장 내게 맞는 집"],
+      text1: ["당신이찾는집", "누구보다완벽한집", "가장내게맞는집"],
     
       leftImage: "https://i.postimg.cc/650Y5zzM/apt4.jpg",
       rightImage: "https://i.postimg.cc/j50zhJZW/apt6.jpg",
@@ -228,7 +226,7 @@ export default {
         slidesToScroll:1,
         timingFunction: 'ease',
         speed: 300
-      },
+      }
       
     } 
   }
@@ -248,7 +246,7 @@ export default {
 }
 
 .vue-typer {
-  font-family: Verdana, Geneva, Arial, sans-serif;
+  font-family:Arial, Verdana, Geneva,  sans-serif;
 }
 .vue-typer .custom.char.typed {
   color: white;
@@ -302,11 +300,6 @@ h1 {
   animation-duration: 10s;
   animation-iteration-count: infinite;
 }
-
-#chart { padding: 50px; } 
-#chart p { 
-  font-size: 30px; font-weight: bold; color: #737373; margin: 0 0 50px 0; }
-
 
 </style>
 

@@ -40,7 +40,6 @@ export default new Vuex.Store({
 
         address: Object,
         markers: [],
-
         isLogin: false, // 로그인 여부
         userInfo: null,
         selectedImage: String,
@@ -150,6 +149,22 @@ export default new Vuex.Store({
             state.books = payload;
         },
         setWishLists(state, payload) {
+            state.wishapts = payload;
+        },
+        setWishListsChange(state, payload) {
+            state.wishapts.length = 0;
+            state.wishapts = payload;
+        },
+        setDongListsChange(state, payload) {
+            state.wishapts.length = 0;
+            state.wishapts = payload;
+        },
+        setFloorListsChange(state, payload) {
+            state.wishapts.length = 0;
+            state.wishapts = payload;
+        },
+        setPriceListsChange(state, payload) {
+            state.wishapts.length = 0;
             state.wishapts = payload;
         },
         setBook(state, payload) {
@@ -276,6 +291,7 @@ export default new Vuex.Store({
                     alert("에러발생!");
                 });
         },
+        
         getGuList({ commit }, city) {
             http
                 .get("/apart/" + city)
@@ -326,12 +342,88 @@ export default new Vuex.Store({
         getWishLists(context) {
             http
             .get("/wish")
-            .then(({ data }) => {
+                .then(({ data }) => {
+                console.log(data);
                 context.commit("setWishLists", data);
             })
             .catch(() => {
                 alert("에러발생!");
             });
+        },
+        getNameSortList(context, payload) {
+            console.log(payload);
+            http
+                .get("/wish/name" ,{
+                    params: {
+                        namestate: payload.nameflag
+                    }
+                })
+                .then(({ data }) => {
+                    
+                    console.log(data);
+                    
+                    context.commit("setWishListsChange", data);
+                })
+                .catch(() => {
+                    alert("namesort에러");
+                });
+        },
+        getDongSortList(context, payload) {
+            console.log(payload);
+            console.log("dongsort");
+            http
+                .get("/wish/dong" ,{
+                    params: {
+                        dongstate: payload.dongflag
+                    }
+                })
+                .then(({ data }) => {
+                    
+                    console.log(data);
+                    
+                    context.commit("setDongListsChange", data);
+                })
+                .catch(() => {
+                    alert("dongsort에러");
+                });
+        },
+        getFloorSortList(context, payload) {
+            console.log(payload);
+            console.log("floorsort");
+            http
+                .get("/wish/floor" ,{
+                    params: {
+                        floorstate: payload.floorflag
+                    }
+                })
+                .then(({ data }) => {
+                    
+                    console.log(data);
+                    
+                    context.commit("setFloorListsChange", data);
+                })
+                .catch(() => {
+                    alert("dongsort에러");
+                });
+        },
+        getPriceSortList(context, payload) {
+            console.log(payload);
+            console.log("pricesort");
+            http
+                .get("/wish/price" ,{
+                    params: {
+                        pricestate: payload.priceflag
+                    }
+                })
+                .then(({ data }) => {
+                    
+                    console.log(data);
+                    
+                    context.commit("setPriceListsChange", data);
+                })
+                .catch(() => {
+                    alert("pricesort에러");
+                });
         },
         getBook(context, payload) {
             http.get("/book/"+payload).then(({ data }) => {
