@@ -32,12 +32,6 @@ public class WishListServiceImpl implements WishListService {
 
 	@Override
 	public int wishListRegister(WishListDto wishListDto) {
-		System.out.println(wishListDto.getNo());
-		System.out.println(wishListDto.getName());
-		System.out.println(wishListDto.getDong());
-		System.out.println(wishListDto.getFloor());
-		System.out.println(wishListDto.getPrice());
-		
 		return sqlSession.getMapper(WishListMapper.class).wishListRegister(wishListDto);
 	}
 
@@ -45,5 +39,43 @@ public class WishListServiceImpl implements WishListService {
 	@Override
 	public int wishListDelete(String no) {
 		return sqlSession.getMapper(WishListMapper.class).wishListDelete(no);
+	}
+
+	@Override
+	public List<WishListDto> wishListName() {
+		return sqlSession.getMapper(WishListMapper.class).wishListName();
+	}
+	
+	@Override
+	public List<WishListDto> wishListNameDesc() {
+		return sqlSession.getMapper(WishListMapper.class).wishListNameDesc();
+	}
+	
+	@Override
+	public List<WishListDto> wishListDong() {
+		return sqlSession.getMapper(WishListMapper.class).wishListDong();
+	}
+	
+	@Override
+	public List<WishListDto> wishListDongDesc() {
+		return sqlSession.getMapper(WishListMapper.class).wishListDongDesc();
+	}
+	@Override
+	public List<WishListDto> wishListFloor() {
+		return sqlSession.getMapper(WishListMapper.class).wishListFloor();
+	}
+	
+	@Override
+	public List<WishListDto> wishListFloorDesc() {
+		return sqlSession.getMapper(WishListMapper.class).wishListFloorDesc();
+	}
+	@Override
+	public List<WishListDto> wishListPrice() {
+		return sqlSession.getMapper(WishListMapper.class).wishListPrice();
+	}
+	
+	@Override
+	public List<WishListDto> wishListPriceDesc() {
+		return sqlSession.getMapper(WishListMapper.class).wishListPriceDesc();
 	}
 }

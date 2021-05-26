@@ -53,7 +53,6 @@ public class WishListController {
 		StringTokenizer st =new StringTokenizer(wishListDto.getPrice(),",");
 		String a= st.nextToken();
 		String b= st.nextToken();
-	
 		a=a+b;
 		wishListDto.setPrice(a);
 		System.out.println(wishListDto.getNo());
@@ -102,10 +101,59 @@ public class WishListController {
 		for(WishListDto dto:wishService.wishList()) {
 			System.out.println(dto.getNo());
 			System.out.println(dto.getPrice());
-			
-			
 		}
 		return new ResponseEntity<>(wishService.wishList(), HttpStatus.OK);
+	}
+	
+	@ApiOperation(value = "모든 찜목록의 정보를 이름순서대로 반환한다.", response = List.class)
+	@GetMapping("/name")
+	public ResponseEntity<List<WishListDto>> listBook2(Boolean namestate) {
+		System.out.println("모든 찜목록 이름순서정보반환");
+		System.out.println(namestate);
+		if(namestate) {
+			return new ResponseEntity<>(wishService.wishListName(), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(wishService.wishListNameDesc(), HttpStatus.OK);
+		}
+	}
+	
+	@ApiOperation(value = "모든 찜목록의 정보를 동순서대로 반환한다.", response = List.class)
+	@GetMapping("/dong")
+	public ResponseEntity<List<WishListDto>> listBookDong(Boolean dongstate) {
+		System.out.println("모든 찜목록 동순서정보반환");
+		System.out.println(dongstate);
+		if(dongstate) {
+			return new ResponseEntity<>(wishService.wishListDong(), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(wishService.wishListDongDesc(), HttpStatus.OK);
+		}
+		
+	}
+	
+	@ApiOperation(value = "모든 찜목록의 정보를 층순서대로 반환한다.", response = List.class)
+	@GetMapping("/floor")
+	public ResponseEntity<List<WishListDto>> listBookFloor(Boolean floorstate) {
+		System.out.println("모든 찜목록 층순서정보반환");
+		System.out.println(floorstate);
+		if(floorstate) {
+			return new ResponseEntity<>(wishService.wishListFloor(), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(wishService.wishListFloorDesc(), HttpStatus.OK);
+		}
+		
+	}
+	
+	@ApiOperation(value = "모든 찜목록의 정보를 동순서대로 반환한다.", response = List.class)
+	@GetMapping("/price")
+	public ResponseEntity<List<WishListDto>> listBookPrice(Boolean pricestate) {
+		System.out.println("모든 찜목록 동순서정보반환");
+		System.out.println(pricestate);
+		if(pricestate) {
+			return new ResponseEntity<>(wishService.wishListPrice(), HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(wishService.wishListPriceDesc(), HttpStatus.OK);
+		}
+		
 	}
 
 	

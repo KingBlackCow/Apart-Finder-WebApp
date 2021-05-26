@@ -11,6 +11,54 @@
 		order by joindate desc
 	</select>
 	
+	<select id="wishListName" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by name asc
+	</select>
+	
+	<select id="wishListNameDesc" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by name desc
+	</select>
+	
+	<select id="wishListDong" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by dong asc
+	</select>
+	
+	<select id="wishListDongDesc" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by dong desc
+	</select>
+	
+	<select id="wishListFloor" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by floor asc
+	</select>
+	
+	<select id="wishListFloorDesc" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by floor desc
+	</select>
+	
+	<select id="wishListPrice" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by price asc
+	</select>
+	
+	<select id="wishListPriceDesc" resultType="wishListDto">
+		select no, name, dong, floor, price
+		from wishlist
+		order by price desc
+	</select>
+	
 	<select id="wishListInfo" parameterType="String" resultType="wishListDto">
 		select no, name, dong, floor, price
 		from wishlist
